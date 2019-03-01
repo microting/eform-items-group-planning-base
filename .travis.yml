@@ -1,0 +1,14 @@
+dist: xenial
+branches:
+  only:
+    - master
+language: csharp
+solution: eform-ItemsPlanningBase/Microting.ItemsPlanningBase.sln
+mono: none
+dotnet: 2.2
+services:
+- mysql
+script:
+  - dotnet restore
+  - dotnet build Microting.ItemsPlanningBase.sln
+  - dotnet test -v n Microting.ItemsPlanningBase.Integration.Tests/Microting.ItemsPlanningBase.Integration.Tests.csproj
