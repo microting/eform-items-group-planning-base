@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.ItemsPlanningBase.Infrastucture.Data.Entities
 {
@@ -13,6 +14,8 @@ namespace Microting.ItemsPlanningBase.Infrastucture.Data.Entities
         public int RelatedeFormId { get; set; }
         
         public string RelatedeFormName { get; set; }
+        
+        public int RepeatedType { get; set; }
         
         [ForeignKey("ItemList")]
         public int ItemList { get; set; }

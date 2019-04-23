@@ -10,7 +10,7 @@ using Microting.ItemsPlanningBase.Infrastucture.Data;
 namespace Microting.ItemsPlanningBase.Migrations
 {
     [DbContext(typeof(ItemsPlanningPnDbContext))]
-    [Migration("20190301120343_InitialCreate")]
+    [Migration("20190423071140_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace Microting.ItemsPlanningBase.Migrations
                 autoIDGenStrategyValue = MySqlValueGenerationStrategy.IdentityColumn;
             }
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
@@ -78,9 +78,11 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<int>("ItemId");
 
-                    b.Property<int>("SdkCaseId");
+                    b.Property<int>("MicrotingSdkCaseId");
 
-                    b.Property<int>("SdkSiteId");
+                    b.Property<int>("MicrotingSdkSiteId");
+
+                    b.Property<int>("MicrotingSdkeFormId");
 
                     b.Property<int>("Status");
 
@@ -92,8 +94,6 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<string>("WorkflowState")
                         .HasMaxLength(255);
-
-                    b.Property<int>("eFomrId");
 
                     b.HasKey("Id");
 
@@ -112,9 +112,11 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<int>("ItemCaseId");
 
-                    b.Property<int>("SdkCaseId");
+                    b.Property<int>("MicrotingSdkCaseId");
 
-                    b.Property<int>("SdkSiteId");
+                    b.Property<int>("MicrotingSdkSiteId");
+
+                    b.Property<int>("MicrotingSdkeFormId");
 
                     b.Property<int>("Status");
 
@@ -126,8 +128,6 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<string>("WorkflowState")
                         .HasMaxLength(255);
-
-                    b.Property<int>("eFomrId");
 
                     b.HasKey("Id");
 
@@ -153,6 +153,8 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<int>("RelatedeFormId");
 
                     b.Property<string>("RelatedeFormName");
+
+                    b.Property<int>("RepeatedType");
 
                     b.Property<DateTime?>("UpdatedAt");
 
@@ -189,6 +191,8 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<int>("RelatedeFormId");
 
                     b.Property<string>("RelatedeFormName");
+
+                    b.Property<int>("RepeatedType");
 
                     b.Property<DateTime?>("UpdatedAt");
 
@@ -240,7 +244,7 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.ToTable("ItemVersions");
                 });
 
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastucture.Data.Entities.ItemsPlanningPnSetting", b =>
+            modelBuilder.Entity("Microting.eFormApi.BasePn.Infrastructure.Database.Entities.PluginConfigurationValue", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -250,9 +254,7 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<int>("CreatedByUserId");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50);
+                    b.Property<string>("Name");
 
                     b.Property<DateTime?>("UpdatedAt");
 
@@ -267,10 +269,10 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ItemsPlanningPnSettings");
+                    b.ToTable("PluginConfigurationValues");
                 });
 
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastucture.Data.Entities.ItemsPlanningPnSettingVersion", b =>
+            modelBuilder.Entity("Microting.eFormApi.BasePn.Infrastructure.Database.Entities.PluginConfigurationValueVersion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -280,11 +282,7 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<int>("CreatedByUserId");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<int>("TrashInspectionPnSettingId");
+                    b.Property<string>("Name");
 
                     b.Property<DateTime?>("UpdatedAt");
 
@@ -299,7 +297,7 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ItemsPlanningPnSettingVersions");
+                    b.ToTable("PluginConfigurationValueVersions");
                 });
 
             modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastucture.Data.Entities.Item", b =>
