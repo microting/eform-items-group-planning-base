@@ -1,0 +1,217 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using eFormShared;
+using Microsoft.EntityFrameworkCore;
+using Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
+using NUnit.Framework;
+
+namespace Microting.ItemsPlanningBase.Tests
+{
+    [TestFixture]
+    public class ItemCaseUTest : DbTestFixture
+    {
+        [Test]
+        public async Task ItemCase_Save_DoesSave()
+        {
+            // Arrange
+            ItemList itemList = new ItemList
+            {
+                Name = Guid.NewGuid().ToString()
+            };
+
+            await itemList.Save(DbContext);
+            
+            Item item = new Item
+            {
+                Name = Guid.NewGuid().ToString(),
+                Description = Guid.NewGuid().ToString(),
+                Enabled = true,
+                RepeatType = Guid.NewGuid().ToString(),
+                ItemListId = itemList.Id
+            };
+            
+            await item.Save(DbContext);
+            
+            ItemCase itemCase = new ItemCase
+            {
+                MicrotingSdkSiteId = 24,
+                MicrotingSdkCaseId = 34,
+                MicrotingSdkeFormId = 234,
+                Status = 66,
+                ItemId = item.Id
+            };
+
+            // Act
+            await itemCase.Save(DbContext);
+
+            List<ItemCase> itemCases = DbContext.ItemCases.AsNoTracking().ToList();
+            List<ItemCaseVersion> itemCaseVersions = DbContext.ItemCaseVersions.AsNoTracking().ToList();
+            
+            // Assert
+            Assert.AreEqual(1, itemCases.Count);
+            Assert.AreEqual(1, itemCaseVersions.Count);
+            Assert.AreEqual(itemCase.MicrotingSdkSiteId, itemCases[0].MicrotingSdkSiteId);
+            Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCases[0].MicrotingSdkCaseId);
+            Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCases[0].MicrotingSdkeFormId);
+            Assert.AreEqual(itemCase.Status, itemCases[0].Status);
+            Assert.AreEqual(itemCase.ItemId, itemCases[0].ItemId);
+            Assert.AreEqual(Constants.WorkflowStates.Created, itemCases[0].WorkflowState);
+            Assert.AreEqual(itemCase.Id, itemCases[0].Id);
+            Assert.AreEqual(1, itemCases[0].Version);
+                        
+            Assert.AreEqual(itemCase.MicrotingSdkSiteId, itemCaseVersions[0].MicrotingSdkSiteId);
+            Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCaseVersions[0].MicrotingSdkCaseId);
+            Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCaseVersions[0].MicrotingSdkeFormId);
+            Assert.AreEqual(itemCase.Status, itemCaseVersions[0].Status);
+            Assert.AreEqual(itemCase.ItemId, itemCaseVersions[0].ItemId);
+            Assert.AreEqual(Constants.WorkflowStates.Created, itemCaseVersions[0].WorkflowState);
+            Assert.AreEqual(itemCase.Id, itemCaseVersions[0].ItemCaseId);
+            Assert.AreEqual(1, itemCaseVersions[0].Version);
+        }
+
+        [Test]
+        public async Task ItemCase_Update_DoesUpdate()
+        {
+            // Arrange
+            ItemList itemList = new ItemList
+            {
+                Name = Guid.NewGuid().ToString()
+            };
+
+            await itemList.Save(DbContext);
+            
+            Item item = new Item
+            {
+                Name = Guid.NewGuid().ToString(),
+                Description = Guid.NewGuid().ToString(),
+                Enabled = true,
+                RepeatType = Guid.NewGuid().ToString(),
+                ItemListId = itemList.Id
+            };
+            
+            await item.Save(DbContext);
+            
+            ItemCase itemCase = new ItemCase
+            {
+                MicrotingSdkSiteId = 24,
+                MicrotingSdkCaseId = 34,
+                MicrotingSdkeFormId = 234,
+                Status = 66,
+                ItemId = item.Id
+            };
+
+            await itemCase.Save(DbContext);
+            // Act
+            itemCase = await DbContext.ItemCases.AsNoTracking().FirstOrDefaultAsync();
+
+            itemCase.Status = 77;
+            await itemCase.Update(DbContext);
+
+            List<ItemCase> itemCases = DbContext.ItemCases.AsNoTracking().ToList();
+            List<ItemCaseVersion> itemCaseVersions = DbContext.ItemCaseVersions.AsNoTracking().ToList();
+            
+            // Assert
+            Assert.AreEqual(1, itemCases.Count);
+            Assert.AreEqual(2, itemCaseVersions.Count);
+            Assert.AreEqual(itemCase.MicrotingSdkSiteId, itemCases[0].MicrotingSdkSiteId);
+            Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCases[0].MicrotingSdkCaseId);
+            Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCases[0].MicrotingSdkeFormId);
+            Assert.AreEqual(77, itemCases[0].Status);
+            Assert.AreEqual(itemCase.ItemId, itemCases[0].ItemId);
+            Assert.AreEqual(Constants.WorkflowStates.Created, itemCases[0].WorkflowState);
+            Assert.AreEqual(itemCase.Id, itemCases[0].Id);
+            Assert.AreEqual(2, itemCases[0].Version);
+                        
+            Assert.AreEqual(itemCase.MicrotingSdkSiteId, itemCaseVersions[0].MicrotingSdkSiteId);
+            Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCaseVersions[0].MicrotingSdkCaseId);
+            Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCaseVersions[0].MicrotingSdkeFormId);
+            Assert.AreEqual(66, itemCaseVersions[0].Status);
+            Assert.AreEqual(itemCase.ItemId, itemCaseVersions[0].ItemId);
+            Assert.AreEqual(Constants.WorkflowStates.Created, itemCaseVersions[0].WorkflowState);
+            Assert.AreEqual(itemCase.Id, itemCaseVersions[0].ItemCaseId);
+            Assert.AreEqual(1, itemCaseVersions[0].Version);
+                        
+            Assert.AreEqual(itemCase.MicrotingSdkSiteId, itemCaseVersions[1].MicrotingSdkSiteId);
+            Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCaseVersions[1].MicrotingSdkCaseId);
+            Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCaseVersions[1].MicrotingSdkeFormId);
+            Assert.AreEqual(77, itemCaseVersions[1].Status);
+            Assert.AreEqual(itemCase.ItemId, itemCaseVersions[1].ItemId);
+            Assert.AreEqual(Constants.WorkflowStates.Created, itemCaseVersions[1].WorkflowState);
+            Assert.AreEqual(itemCase.Id, itemCaseVersions[1].ItemCaseId);
+            Assert.AreEqual(2, itemCaseVersions[1].Version);
+        }
+
+        [Test]
+        public async Task ItemCase_Delete_DoesDelete()
+        {
+            // Arrange
+            ItemList itemList = new ItemList
+            {
+                Name = Guid.NewGuid().ToString()
+            };
+
+            await itemList.Save(DbContext);
+            
+            Item item = new Item
+            {
+                Name = Guid.NewGuid().ToString(),
+                Description = Guid.NewGuid().ToString(),
+                Enabled = true,
+                RepeatType = Guid.NewGuid().ToString(),
+                ItemListId = itemList.Id
+            };
+            
+            await item.Save(DbContext);
+            
+            ItemCase itemCase = new ItemCase
+            {
+                MicrotingSdkSiteId = 24,
+                MicrotingSdkCaseId = 34,
+                MicrotingSdkeFormId = 234,
+                Status = 66,
+                ItemId = item.Id
+            };
+
+            await itemCase.Save(DbContext);
+            // Act
+            itemCase = await DbContext.ItemCases.AsNoTracking().FirstOrDefaultAsync();
+
+            await itemCase.Delete(DbContext);
+
+            List<ItemCase> itemCases = DbContext.ItemCases.AsNoTracking().ToList();
+            List<ItemCaseVersion> itemCaseVersions = DbContext.ItemCaseVersions.AsNoTracking().ToList();
+            
+            // Assert
+            Assert.AreEqual(1, itemCases.Count);
+            Assert.AreEqual(2, itemCaseVersions.Count);
+            Assert.AreEqual(itemCase.MicrotingSdkSiteId, itemCases[0].MicrotingSdkSiteId);
+            Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCases[0].MicrotingSdkCaseId);
+            Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCases[0].MicrotingSdkeFormId);
+            Assert.AreEqual(itemCase.Status, itemCases[0].Status);
+            Assert.AreEqual(itemCase.ItemId, itemCases[0].ItemId);
+            Assert.AreEqual(Constants.WorkflowStates.Removed, itemCases[0].WorkflowState);
+            Assert.AreEqual(itemCase.Id, itemCases[0].Id);
+            Assert.AreEqual(2, itemCases[0].Version);
+                        
+            Assert.AreEqual(itemCase.MicrotingSdkSiteId, itemCaseVersions[0].MicrotingSdkSiteId);
+            Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCaseVersions[0].MicrotingSdkCaseId);
+            Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCaseVersions[0].MicrotingSdkeFormId);
+            Assert.AreEqual(itemCase.Status, itemCaseVersions[0].Status);
+            Assert.AreEqual(itemCase.ItemId, itemCaseVersions[0].ItemId);
+            Assert.AreEqual(Constants.WorkflowStates.Created, itemCaseVersions[0].WorkflowState);
+            Assert.AreEqual(itemCase.Id, itemCaseVersions[0].ItemCaseId);
+            Assert.AreEqual(1, itemCaseVersions[0].Version);
+                        
+            Assert.AreEqual(itemCase.MicrotingSdkSiteId, itemCaseVersions[1].MicrotingSdkSiteId);
+            Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCaseVersions[1].MicrotingSdkCaseId);
+            Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCaseVersions[1].MicrotingSdkeFormId);
+            Assert.AreEqual(itemCase.Status, itemCaseVersions[1].Status);
+            Assert.AreEqual(itemCase.ItemId, itemCaseVersions[1].ItemId);
+            Assert.AreEqual(Constants.WorkflowStates.Removed, itemCaseVersions[1].WorkflowState);
+            Assert.AreEqual(itemCase.Id, itemCaseVersions[1].ItemCaseId);
+            Assert.AreEqual(2, itemCaseVersions[1].Version);
+        }
+    }
+}

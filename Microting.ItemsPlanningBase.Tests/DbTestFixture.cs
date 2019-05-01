@@ -54,11 +54,11 @@ namespace Microting.ItemsPlanningBase.Tests
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                _connectionString = @"data source=(LocalDb)\SharedInstance;Initial catalog=trash-inspection-pn-tests;Integrated Security=true";
+                _connectionString = @"data source=(LocalDb)\SharedInstance;Initial catalog=items-planning-pn-tests;Integrated Security=true";
             }
             else
             {
-                _connectionString = @"Server = localhost; port = 3306; Database = trash-inspection-pn-tests; user = root; Convert Zero Datetime = true;";
+                _connectionString = @"Server = localhost; port = 3306; Database = items-planning-pn-tests; user = root; Convert Zero Datetime = true;";
             }
 
             GetContext(_connectionString);
@@ -106,7 +106,7 @@ namespace Microting.ItemsPlanningBase.Tests
                     string sqlCmd;
                     if (DbContext.Database.IsMySql())
                     {
-                        sqlCmd = $"SET FOREIGN_KEY_CHECKS = 0;TRUNCATE `trash-inspection-pn-tests`.`{modelName}`";
+                        sqlCmd = $"SET FOREIGN_KEY_CHECKS = 0;TRUNCATE `items-planning-pn-tests`.`{modelName}`";
                     }
                     else
                     {

@@ -66,6 +66,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
             dbContext.ItemVersions.Add(MapItemVersion(item));
             dbContext.SaveChanges();
+
+            Id = item.Id;
         }
 
         public async Task Update(ItemsPlanningPnDbContext dbContext)
