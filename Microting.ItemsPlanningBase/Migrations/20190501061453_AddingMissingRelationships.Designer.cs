@@ -33,8 +33,8 @@ using Microting.ItemsPlanningBase.Infrastructure.Data;
 namespace Microting.ItemsPlanningBase.Migrations
 {
     [DbContext(typeof(ItemsPlanningPnDbContext))]
-    [Migration("20190423071140_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190501061453_AddingMissingRelationships")]
+    partial class AddingMissingRelationships
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,7 +51,7 @@ namespace Microting.ItemsPlanningBase.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastucture.Data.Entities.Item", b =>
+            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.Item", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -89,7 +89,7 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastucture.Data.Entities.ItemCase", b =>
+            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.ItemCase", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -123,7 +123,7 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.ToTable("ItemCases");
                 });
 
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastucture.Data.Entities.ItemCaseVersion", b =>
+            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.ItemCaseVersion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -134,6 +134,8 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<int>("CreatedByUserId");
 
                     b.Property<int>("ItemCaseId");
+
+                    b.Property<int>("ItemId");
 
                     b.Property<int>("MicrotingSdkCaseId");
 
@@ -157,7 +159,7 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.ToTable("ItemCaseVersions");
                 });
 
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastucture.Data.Entities.ItemLIst", b =>
+            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.ItemList", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -193,7 +195,7 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.ToTable("ItemLists");
                 });
 
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastucture.Data.Entities.ItemListVersion", b =>
+            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.ItemListVersion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -207,7 +209,7 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<bool>("Enabled");
 
-                    b.Property<int>("ItemList");
+                    b.Property<int>("ItemListId");
 
                     b.Property<string>("Name");
 
@@ -231,7 +233,7 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.ToTable("ItemListVersions");
                 });
 
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastucture.Data.Entities.ItemVersion", b =>
+            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.ItemVersion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -246,6 +248,8 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<bool>("Enabled");
 
                     b.Property<int>("ItemId");
+
+                    b.Property<int>("ItemListId");
 
                     b.Property<string>("Name");
 
@@ -323,9 +327,9 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.ToTable("PluginConfigurationValueVersions");
                 });
 
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastucture.Data.Entities.Item", b =>
+            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.Item", b =>
                 {
-                    b.HasOne("Microting.ItemsPlanningBase.Infrastucture.Data.Entities.ItemLIst")
+                    b.HasOne("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.ItemList")
                         .WithMany("Items")
                         .HasForeignKey("ItemListId")
                         .OnDelete(DeleteBehavior.Cascade);

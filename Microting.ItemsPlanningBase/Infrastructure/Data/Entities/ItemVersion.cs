@@ -1,4 +1,4 @@
-﻿/*
+/*
 The MIT License (MIT)
 
 Copyright (c) 2007 - 2019 microting
@@ -21,10 +21,26 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-namespace Microting.ItemsPlanningBase
+using System.ComponentModel.DataAnnotations.Schema;
+using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
+
+namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
-    public class Core
+    public class ItemVersion : BaseEntity
     {
+        public string Sku { get; set; }
         
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+        
+        public bool Enabled { get; set; }
+        
+        public string RepeatType { get; set; }    
+        
+        public int ItemListId { get; set; }    
+        
+        [ForeignKey("Item")]
+        public int ItemId { get; set; }
     }
 }
