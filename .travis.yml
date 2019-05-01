@@ -11,4 +11,4 @@ services:
 script:
   - dotnet restore
   - dotnet build Microting.ItemsPlanningBase.sln
-  - dotnet test -v n Microting.ItemsPlanningBase.Integration.Tests/Microting.ItemsPlanningBase.Integration.Tests.csproj
+  - dotnet test -v n Microting.ItemsPlanningBase.Tests/Microting.ItemsPlanningBase.Tests.csproj
