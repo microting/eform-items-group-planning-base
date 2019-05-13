@@ -51,7 +51,6 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
                 Enabled = true,
-                RepeatType = Guid.NewGuid().ToString(),
                 ItemListId = itemList.Id
             };
 
@@ -67,7 +66,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(item.Name, items[0].Name);
             Assert.AreEqual(item.Description, items[0].Description);
             Assert.AreEqual(item.Enabled, items[0].Enabled);
-            Assert.AreEqual(item.RepeatType, items[0].RepeatType);
             Assert.AreEqual(item.ItemListId, items[0].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Created, items[0].WorkflowState);
             Assert.AreEqual(item.Id, items[0].Id);
@@ -76,7 +74,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(item.Name, itemVersions[0].Name);
             Assert.AreEqual(item.Description, itemVersions[0].Description);
             Assert.AreEqual(item.Enabled, itemVersions[0].Enabled);
-            Assert.AreEqual(item.RepeatType, itemVersions[0].RepeatType);
             Assert.AreEqual(item.ItemListId, itemVersions[0].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemVersions[0].WorkflowState);
             Assert.AreEqual(item.Id, itemVersions[0].Id);
@@ -99,7 +96,6 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
                 Enabled = true,
-                RepeatType = Guid.NewGuid().ToString(),
                 ItemListId = itemList.Id
             };
             await item.Save(DbContext);
@@ -121,7 +117,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual("hello", items[0].Name);
             Assert.AreEqual(item.Description, items[0].Description);
             Assert.AreEqual(item.Enabled, items[0].Enabled);
-            Assert.AreEqual(item.RepeatType, items[0].RepeatType);
             Assert.AreEqual(item.ItemListId, items[0].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Created, items[0].WorkflowState);
             Assert.AreEqual(item.Id, items[0].Id);
@@ -130,7 +125,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(oldName, itemVersions[0].Name);
             Assert.AreEqual(item.Description, itemVersions[0].Description);
             Assert.AreEqual(item.Enabled, itemVersions[0].Enabled);
-            Assert.AreEqual(item.RepeatType, itemVersions[0].RepeatType);
             Assert.AreEqual(item.ItemListId, itemVersions[0].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemVersions[0].WorkflowState);
             Assert.AreEqual(item.Id, itemVersions[0].ItemId);
@@ -139,7 +133,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual("hello", itemVersions[1].Name);
             Assert.AreEqual(item.Description, itemVersions[1].Description);
             Assert.AreEqual(item.Enabled, itemVersions[1].Enabled);
-            Assert.AreEqual(item.RepeatType, itemVersions[1].RepeatType);
             Assert.AreEqual(item.ItemListId, itemVersions[1].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemVersions[1].WorkflowState);
             Assert.AreEqual(item.Id, itemVersions[1].ItemId);
@@ -162,7 +155,6 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
                 Enabled = true,
-                RepeatType = Guid.NewGuid().ToString(),
                 ItemListId = itemList.Id
             };
             await item.Save(DbContext);
@@ -183,7 +175,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(item.Name, items[0].Name);
             Assert.AreEqual(item.Description, items[0].Description);
             Assert.AreEqual(item.Enabled, items[0].Enabled);
-            Assert.AreEqual(item.RepeatType, items[0].RepeatType);
             Assert.AreEqual(item.ItemListId, items[0].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Removed, items[0].WorkflowState);
             Assert.AreEqual(item.Id, items[0].Id);
@@ -192,7 +183,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(item.Name, itemVersions[0].Name);
             Assert.AreEqual(item.Description, itemVersions[0].Description);
             Assert.AreEqual(item.Enabled, itemVersions[0].Enabled);
-            Assert.AreEqual(item.RepeatType, itemVersions[0].RepeatType);
             Assert.AreEqual(item.ItemListId, itemVersions[0].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemVersions[0].WorkflowState);
             Assert.AreEqual(item.Id, itemVersions[0].ItemId);
@@ -201,7 +191,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(item.Name, itemVersions[1].Name);
             Assert.AreEqual(item.Description, itemVersions[1].Description);
             Assert.AreEqual(item.Enabled, itemVersions[1].Enabled);
-            Assert.AreEqual(item.RepeatType, itemVersions[1].RepeatType);
             Assert.AreEqual(item.ItemListId, itemVersions[1].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Removed, itemVersions[1].WorkflowState);
             Assert.AreEqual(item.Id, itemVersions[1].ItemId);

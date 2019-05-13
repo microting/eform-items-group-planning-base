@@ -26,19 +26,20 @@ using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
+    using System;
+    using Enums;
+
     public class ItemListVersion : BaseEntity
     {                              
         public string Name { get; set; }
-
         public string Description { get; set; }
-        
+        public int RepeatEvery { get; set; }
+        public RepeatType RepeatType { get; set; }
+        public RepeatOn RepeatOn { get; set; }
+        public DateTime? RepeatUntil { get; set; }
         public bool Enabled { get; set; }
-        
-        public int RelatedeFormId { get; set; }
-        
-        public string RelatedeFormName { get; set; }
-        
-        public int RepeatedType { get; set; }
+        public int RelatedEFormId { get; set; }
+        public string RelatedEFormName { get; set; }
         
         [ForeignKey("ItemList")]
         public int ItemListId { get; set; }

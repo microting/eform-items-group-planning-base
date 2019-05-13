@@ -23,25 +23,24 @@ SOFTWARE.
 */
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Threading.Tasks;
 using eFormShared;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
+    using Microsoft.EntityFrameworkCore;
+
     public class Item : BaseEntity
     {
         public string Sku { get; set; }
-        
         public string Name { get; set; }
-
         public string Description { get; set; }
-        
         public bool Enabled { get; set; }
-        
-        public string RepeatType { get; set; }
-        
+        public string ItemNumber { get; set; }
+        public string LocationCode { get; set; }
+        public int TemplateId { get; set; }
+
         [ForeignKey("ItemList")]
         public int ItemListId { get; set; }
                     
@@ -53,7 +52,9 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 Name = Name,
                 Description = Description,
                 Enabled = Enabled,
-                RepeatType = RepeatType,
+                ItemNumber = ItemNumber,
+                LocationCode = LocationCode,
+                TemplateId = TemplateId,
                 ItemListId = ItemListId,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
@@ -61,18 +62,18 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 WorkflowState = Constants.WorkflowStates.Created
             };
 
-            dbContext.Items.Add(item);
-            dbContext.SaveChanges();
+            await dbContext.Items.AddAsync(item);
+            await dbContext.SaveChangesAsync();
 
-            dbContext.ItemVersions.Add(MapItemVersion(item));
-            dbContext.SaveChanges();
+            await dbContext.ItemVersions.AddAsync(MapItemVersion(item));
+            await dbContext.SaveChangesAsync();
 
             Id = item.Id;
         }
 
         public async Task Update(ItemsPlanningPnDbContext dbContext)
         {
-            Item item = dbContext.Items.FirstOrDefault(x => x.Id == Id);
+            Item item = await dbContext.Items.FirstOrDefaultAsync(x => x.Id == Id);
 
             if (item == null)
             {
@@ -83,20 +84,23 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             item.Name = Name;
             item.Description = Description;
             item.WorkflowState = WorkflowState;
+            item.TemplateId = TemplateId;
+            item.ItemNumber = ItemNumber;
+            item.LocationCode = LocationCode;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
                 item.UpdatedAt = DateTime.UtcNow;
                 item.Version += 1;
 
-                dbContext.ItemVersions.Add(MapItemVersion(item));
-                dbContext.SaveChanges();
+                await dbContext.ItemVersions.AddAsync(MapItemVersion(item));
+                await dbContext.SaveChangesAsync();
             }
         }
 
         public async Task Delete(ItemsPlanningPnDbContext dbContext)
         {            
-            Item item = dbContext.Items.FirstOrDefault(x => x.Id == Id);
+            Item item = await dbContext.Items.FirstOrDefaultAsync(x => x.Id == Id);
 
             if (item == null)
             {
@@ -110,28 +114,30 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 item.UpdatedAt = DateTime.UtcNow;
                 item.Version += 1;
 
-                dbContext.ItemVersions.Add(MapItemVersion(item));
-                dbContext.SaveChanges();
+                await dbContext.ItemVersions.AddAsync(MapItemVersion(item));
+                await dbContext.SaveChangesAsync();
             }
             
         }
 
         private ItemVersion MapItemVersion(Item item)
         {
-            ItemVersion itemVersion = new ItemVersion();
-
-            itemVersion.Sku = item.Sku;
-            itemVersion.Name = item.Name;
-            itemVersion.Description = item.Description;
-            itemVersion.Enabled = item.Enabled;
-            itemVersion.RepeatType = item.RepeatType;
-            itemVersion.ItemListId = item.ItemListId;
-            itemVersion.Version = item.Version;
-            itemVersion.ItemId = item.Id;
-            itemVersion.CreatedAt = item.CreatedAt;
-            itemVersion.UpdatedAt = item.UpdatedAt;
-            itemVersion.WorkflowState = item.WorkflowState;
-
+            ItemVersion itemVersion = new ItemVersion
+            {
+                Sku = item.Sku,
+                Name = item.Name,
+                Description = item.Description,
+                Enabled = item.Enabled,
+                ItemListId = item.ItemListId,
+                Version = item.Version,
+                ItemId = item.Id,
+                CreatedAt = item.CreatedAt,
+                UpdatedAt = item.UpdatedAt,
+                TemplateId = item.TemplateId,
+                LocationCode = item.LocationCode,
+                ItemNumber = item.ItemNumber,
+                WorkflowState = item.WorkflowState
+            };
 
             return itemVersion;
         }
