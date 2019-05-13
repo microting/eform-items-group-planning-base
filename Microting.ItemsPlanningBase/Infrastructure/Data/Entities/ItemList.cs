@@ -23,7 +23,6 @@ SOFTWARE.
 */
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using eFormShared;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
@@ -44,6 +43,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public bool Enabled { get; set; }
         public int RelatedEFormId { get; set; }
         public string RelatedEFormName { get; set; }
+        public int TemplateId { get; set; }
+
         public virtual ICollection<Item> Items { get; set; } = new HashSet<Item>();
         
         public async Task Save(ItemsPlanningPnDbContext dbContext)
@@ -55,6 +56,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 Enabled = Enabled,
                 RelatedEFormId = RelatedEFormId,
                 RelatedEFormName = RelatedEFormName,
+                TemplateId = TemplateId,
                 RepeatEvery = RepeatEvery,
                 RepeatOn = RepeatOn,
                 RepeatType = RepeatType,
@@ -89,6 +91,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemList.RepeatUntil = RepeatUntil;
             itemList.RelatedEFormId = RelatedEFormId;
             itemList.RelatedEFormName = RelatedEFormName;
+            itemList.TemplateId = TemplateId;
             itemList.RepeatEvery = RepeatEvery;
             itemList.RepeatOn = RepeatOn;
             itemList.RepeatType = RepeatType;
@@ -136,6 +139,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 RepeatUntil = itemList.RepeatUntil,
                 RelatedEFormId = itemList.RelatedEFormId,
                 RelatedEFormName = itemList.RelatedEFormName,
+                TemplateId = itemList.TemplateId,
                 RepeatOn = itemList.RepeatOn,
                 RepeatEvery = itemList.RepeatEvery,
                 RepeatType = itemList.RepeatType,
