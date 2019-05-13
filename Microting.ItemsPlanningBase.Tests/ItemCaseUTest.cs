@@ -51,7 +51,6 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
                 Enabled = true,
-                RepeatType = Guid.NewGuid().ToString(),
                 ItemListId = itemList.Id
             };
             
@@ -110,7 +109,6 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
                 Enabled = true,
-                RepeatType = Guid.NewGuid().ToString(),
                 ItemListId = itemList.Id
             };
             
@@ -182,7 +180,6 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
                 Enabled = true,
-                RepeatType = Guid.NewGuid().ToString(),
                 ItemListId = itemList.Id
             };
             

@@ -30,27 +30,21 @@ using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
-    public class ItemList : BaseEntity
-    {               
-        
-        public ItemList()
-        {
-            this.Items = new HashSet<Item>();
-        }
-        
-        public string Name { get; set; }
+    using Enums;
+    using Microsoft.EntityFrameworkCore;
 
+    public class ItemList : BaseEntity
+    {
+        public string Name { get; set; }
         public string Description { get; set; }
-        
+        public int RepeatEvery { get; set; }
+        public RepeatType RepeatType { get; set; }
+        public RepeatOn RepeatOn { get; set; }
+        public DateTime? RepeatUntil { get; set; }
         public bool Enabled { get; set; }
-        
-        public int RelatedeFormId { get; set; }
-        
-        public string RelatedeFormName { get; set; }
-        
-        public int RepeatedType { get; set; }
-        
-        public virtual ICollection<Item> Items { get; set; }
+        public int RelatedEFormId { get; set; }
+        public string RelatedEFormName { get; set; }
+        public virtual ICollection<Item> Items { get; set; } = new HashSet<Item>();
         
         public async Task Save(ItemsPlanningPnDbContext dbContext)
         {
@@ -59,27 +53,30 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 Name = Name,
                 Description = Description,
                 Enabled = Enabled,
-                RelatedeFormId = RelatedeFormId,
-                RelatedeFormName = RelatedeFormName,
-                RepeatedType = RepeatedType,
+                RelatedEFormId = RelatedEFormId,
+                RelatedEFormName = RelatedEFormName,
+                RepeatEvery = RepeatEvery,
+                RepeatOn = RepeatOn,
+                RepeatType = RepeatType,
+                RepeatUntil = RepeatUntil,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
                 Version = 1,
                 WorkflowState = Constants.WorkflowStates.Created
             };
 
-            dbContext.ItemLists.Add(itemList);
-            dbContext.SaveChanges();
+            await dbContext.ItemLists.AddAsync(itemList);
+            await dbContext.SaveChangesAsync();
 
-            dbContext.ItemListVersions.Add(MapItemListVersion(itemList));
-            dbContext.SaveChanges();
+            await dbContext.ItemListVersions.AddAsync(MapItemListVersion(itemList));
+            await dbContext.SaveChangesAsync();
 
             Id = itemList.Id;
         }
 
         public async Task Update(ItemsPlanningPnDbContext dbContext)
         {
-            ItemList itemList = dbContext.ItemLists.FirstOrDefault(x => x.Id == Id);
+            ItemList itemList = await dbContext.ItemLists.FirstOrDefaultAsync(x => x.Id == Id);
 
             if (itemList == null)
             {
@@ -89,9 +86,12 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemList.Name = Name;
             itemList.Description = Description;
             itemList.Enabled = Enabled;
-            itemList.RelatedeFormId = RelatedeFormId;
-            itemList.RelatedeFormName = RelatedeFormName;
-            itemList.RepeatedType = RepeatedType;
+            itemList.RepeatUntil = RepeatUntil;
+            itemList.RelatedEFormId = RelatedEFormId;
+            itemList.RelatedEFormName = RelatedEFormName;
+            itemList.RepeatEvery = RepeatEvery;
+            itemList.RepeatOn = RepeatOn;
+            itemList.RepeatType = RepeatType;
             itemList.WorkflowState = WorkflowState;
 
             if (dbContext.ChangeTracker.HasChanges())
@@ -99,14 +99,14 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 itemList.UpdatedAt = DateTime.UtcNow;
                 itemList.Version += 1;
 
-                dbContext.ItemListVersions.Add(MapItemListVersion(itemList));
-                dbContext.SaveChanges();
+                await dbContext.ItemListVersions.AddAsync(MapItemListVersion(itemList));
+                await dbContext.SaveChangesAsync();
             }
         }
 
         public async Task Delete(ItemsPlanningPnDbContext dbContext)
         {            
-            ItemList itemList = dbContext.ItemLists.FirstOrDefault(x => x.Id == Id);
+            ItemList itemList = await dbContext.ItemLists.FirstOrDefaultAsync(x => x.Id == Id);
 
             if (itemList == null)
             {
@@ -120,28 +120,31 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 itemList.UpdatedAt = DateTime.UtcNow;
                 itemList.Version += 1;
 
-                dbContext.ItemListVersions.Add(MapItemListVersion(itemList));
-                dbContext.SaveChanges();
+                await dbContext.ItemListVersions.AddAsync(MapItemListVersion(itemList));
+                await dbContext.SaveChangesAsync();
             }
             
         }
 
         private ItemListVersion MapItemListVersion(ItemList itemList)
         {
-            ItemListVersion itemVersion = new ItemListVersion();
-
-            itemVersion.Name = itemList.Name;
-            itemVersion.Description = itemList.Description;
-            itemVersion.Enabled = itemList.Enabled;
-            itemVersion.RelatedeFormId = itemList.RelatedeFormId;
-            itemVersion.RelatedeFormName = itemList.RelatedeFormName;
-            itemVersion.RepeatedType = itemList.RepeatedType;
-            itemVersion.ItemListId = itemList.Id;
-            itemVersion.Version = itemList.Version;
-            itemVersion.CreatedAt = itemList.CreatedAt;
-            itemVersion.UpdatedAt = itemList.UpdatedAt;
-            itemVersion.WorkflowState = itemList.WorkflowState;
-
+            var itemVersion = new ItemListVersion
+            {
+                Name = itemList.Name,
+                Description = itemList.Description,
+                Enabled = itemList.Enabled,
+                RepeatUntil = itemList.RepeatUntil,
+                RelatedEFormId = itemList.RelatedEFormId,
+                RelatedEFormName = itemList.RelatedEFormName,
+                RepeatOn = itemList.RepeatOn,
+                RepeatEvery = itemList.RepeatEvery,
+                RepeatType = itemList.RepeatType,
+                ItemListId = itemList.Id,
+                Version = itemList.Version,
+                CreatedAt = itemList.CreatedAt,
+                WorkflowState = itemList.WorkflowState,
+                UpdatedAt = itemList.UpdatedAt,
+            };
 
             return itemVersion;
         }

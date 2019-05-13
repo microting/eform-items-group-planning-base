@@ -32,6 +32,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Factories
     {
         public ItemsPlanningPnDbContext CreateDbContext(string[] args)
         {
+            //args = new[]
+            //    {"Data Source=.\\SQLEXPRESS;Database=items-plugin;Integrated Security=True"};
             var optionsBuilder = new DbContextOptionsBuilder<ItemsPlanningPnDbContext>();
             if (args.Any())
             {

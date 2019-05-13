@@ -11,8 +11,4 @@
       <PackageReference Include="Microting.eFormApi.BasePn" Version="1.1.148" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Migrations" />
-    </ItemGroup>
-
 </Project>
