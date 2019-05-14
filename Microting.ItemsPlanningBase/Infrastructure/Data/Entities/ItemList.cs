@@ -140,7 +140,6 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 RepeatUntil = itemList.RepeatUntil,
                 RelatedEFormId = itemList.RelatedEFormId,
                 RelatedEFormName = itemList.RelatedEFormName,
-                TemplateId = itemList.TemplateId,
                 RepeatOn = itemList.RepeatOn,
                 RepeatEvery = itemList.RepeatEvery,
                 RepeatType = itemList.RepeatType,
