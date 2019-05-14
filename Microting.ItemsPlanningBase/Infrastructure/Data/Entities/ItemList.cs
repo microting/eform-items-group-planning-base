@@ -41,9 +41,9 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public RepeatOn RepeatOn { get; set; }
         public DateTime? RepeatUntil { get; set; }
         public bool Enabled { get; set; }
-        public int? RelatedEFormId { get; set; }
+        public int RelatedEFormId { get; set; }
         public string RelatedEFormName { get; set; }
-        public int? TemplateId { get; set; }
+        public int TemplateId { get; set; }
 
         public virtual ICollection<Item> Items { get; set; } = new HashSet<Item>();
         
@@ -64,7 +64,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
                 Version = 1,
-                WorkflowState = Constants.WorkflowStates.Created
+                WorkflowState = Constants.WorkflowStates.Created,
+                Items = Items
             };
 
             await dbContext.ItemLists.AddAsync(itemList);
