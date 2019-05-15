@@ -40,7 +40,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public bool Enabled { get; set; }
         public int RelatedEFormId { get; set; }
         public string RelatedEFormName { get; set; }
-        
+
         [ForeignKey("ItemList")]
         public int ItemListId { get; set; }
         
