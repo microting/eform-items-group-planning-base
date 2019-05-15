@@ -84,7 +84,9 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             item.WorkflowState = WorkflowState;
             item.ItemNumber = ItemNumber;
             item.LocationCode = LocationCode;
-
+            item.UpdatedAt = UpdatedAt;
+            item.UpdatedByUserId = UpdatedByUserId;
+            
             if (dbContext.ChangeTracker.HasChanges())
             {
                 item.UpdatedAt = DateTime.UtcNow;
@@ -132,7 +134,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 UpdatedAt = item.UpdatedAt,
                 LocationCode = item.LocationCode,
                 ItemNumber = item.ItemNumber,
-                WorkflowState = item.WorkflowState
+                WorkflowState = item.WorkflowState,
             };
 
             return itemVersion;

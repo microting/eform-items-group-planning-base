@@ -97,7 +97,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemList.RepeatOn = RepeatOn;
             itemList.RepeatType = RepeatType;
             itemList.WorkflowState = WorkflowState;
-
+            
             if (dbContext.ChangeTracker.HasChanges())
             {
                 itemList.UpdatedAt = DateTime.UtcNow;
