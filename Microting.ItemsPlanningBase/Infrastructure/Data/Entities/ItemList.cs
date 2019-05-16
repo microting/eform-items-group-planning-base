@@ -43,7 +43,6 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public bool Enabled { get; set; }
         public int RelatedEFormId { get; set; }
         public string RelatedEFormName { get; set; }
-        public int TemplateId { get; set; }
 
         public virtual ICollection<Item> Items { get; set; } = new HashSet<Item>();
         
@@ -56,7 +55,6 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 Enabled = Enabled,
                 RelatedEFormId = RelatedEFormId,
                 RelatedEFormName = RelatedEFormName,
-                TemplateId = TemplateId,
                 RepeatEvery = RepeatEvery,
                 RepeatOn = RepeatOn,
                 RepeatType = RepeatType,
@@ -65,7 +63,9 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 UpdatedAt = DateTime.UtcNow,
                 Version = 1,
                 WorkflowState = Constants.WorkflowStates.Created,
-                Items = Items
+                Items = Items,
+                CreatedByUserId = CreatedByUserId,
+                UpdatedByUserId = UpdatedByUserId,
             };
 
             await dbContext.ItemLists.AddAsync(itemList);
@@ -92,12 +92,12 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemList.RepeatUntil = RepeatUntil;
             itemList.RelatedEFormId = RelatedEFormId;
             itemList.RelatedEFormName = RelatedEFormName;
-            itemList.TemplateId = TemplateId;
             itemList.RepeatEvery = RepeatEvery;
             itemList.RepeatOn = RepeatOn;
             itemList.RepeatType = RepeatType;
             itemList.WorkflowState = WorkflowState;
-            
+            itemList.UpdatedByUserId = UpdatedByUserId;
+
             if (dbContext.ChangeTracker.HasChanges())
             {
                 itemList.UpdatedAt = DateTime.UtcNow;
@@ -148,6 +148,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 CreatedAt = itemList.CreatedAt,
                 WorkflowState = itemList.WorkflowState,
                 UpdatedAt = itemList.UpdatedAt,
+                UpdatedByUserId = itemList.UpdatedByUserId,
+                CreatedByUserId = itemList.CreatedByUserId,
             };
 
             return itemVersion;
