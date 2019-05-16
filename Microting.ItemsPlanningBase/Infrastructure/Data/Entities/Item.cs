@@ -57,7 +57,9 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
                 Version = 1,
-                WorkflowState = Constants.WorkflowStates.Created
+                WorkflowState = Constants.WorkflowStates.Created,
+                UpdatedByUserId = UpdatedByUserId,
+                CreatedByUserId = CreatedByUserId,
             };
 
             await dbContext.Items.AddAsync(item);
@@ -86,7 +88,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             item.LocationCode = LocationCode;
             item.UpdatedAt = UpdatedAt;
             item.UpdatedByUserId = UpdatedByUserId;
-            
+
             if (dbContext.ChangeTracker.HasChanges())
             {
                 item.UpdatedAt = DateTime.UtcNow;
@@ -135,6 +137,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 LocationCode = item.LocationCode,
                 ItemNumber = item.ItemNumber,
                 WorkflowState = item.WorkflowState,
+                UpdatedByUserId = item.UpdatedByUserId,
+                CreatedByUserId = item.CreatedByUserId,
             };
 
             return itemVersion;
