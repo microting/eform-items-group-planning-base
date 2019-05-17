@@ -51,7 +51,14 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
                 Enabled = true,
-                ItemListId = itemList.Id
+                ItemListId = itemList.Id,
+                UpdatedByUserId = 1,
+                CreatedByUserId = 1,
+                Version = 1,
+                WorkflowState = Constants.WorkflowStates.Created,
+                ItemNumber = "1",
+                LocationCode = "2",
+                Sku = "3",
             };
 
             // Act
@@ -67,6 +74,14 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(item.Description, items[0].Description);
             Assert.AreEqual(item.Enabled, items[0].Enabled);
             Assert.AreEqual(item.ItemListId, items[0].ItemListId);
+
+            Assert.AreEqual(item.UpdatedByUserId, items[0].UpdatedByUserId);
+            Assert.AreEqual(item.CreatedByUserId, items[0].CreatedByUserId);
+            Assert.AreEqual(item.Version, items[0].Version);
+            Assert.AreEqual(item.WorkflowState, items[0].WorkflowState);
+            Assert.AreEqual(item.ItemNumber, items[0].ItemNumber);
+            Assert.AreEqual(item.LocationCode, items[0].LocationCode);
+
             Assert.AreEqual(Constants.WorkflowStates.Created, items[0].WorkflowState);
             Assert.AreEqual(item.Id, items[0].Id);
             Assert.AreEqual(1, items[0].Version);
@@ -75,8 +90,15 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(item.Description, itemVersions[0].Description);
             Assert.AreEqual(item.Enabled, itemVersions[0].Enabled);
             Assert.AreEqual(item.ItemListId, itemVersions[0].ItemListId);
+
+            Assert.AreEqual(item.UpdatedByUserId, itemVersions[0].UpdatedByUserId);
+            Assert.AreEqual(item.CreatedByUserId, itemVersions[0].CreatedByUserId);
+            Assert.AreEqual(item.Version, itemVersions[0].Version);
+            Assert.AreEqual(item.WorkflowState, itemVersions[0].WorkflowState);
+            Assert.AreEqual(item.ItemNumber, itemVersions[0].ItemNumber);
+            Assert.AreEqual(item.LocationCode, itemVersions[0].LocationCode);
+
             Assert.AreEqual(Constants.WorkflowStates.Created, itemVersions[0].WorkflowState);
-            Assert.AreEqual(item.Id, itemVersions[0].Id);
             Assert.AreEqual(1, itemVersions[0].Version);
         }
 
@@ -96,7 +118,14 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
                 Enabled = true,
-                ItemListId = itemList.Id
+                ItemListId = itemList.Id,
+                UpdatedByUserId = 1,
+                CreatedByUserId = 1,
+                Version = 1,
+                WorkflowState = Constants.WorkflowStates.Created,
+                ItemNumber = "1",
+                LocationCode = "2",
+                Sku = "3",
             };
             await item.Save(DbContext);
 
@@ -109,8 +138,7 @@ namespace Microting.ItemsPlanningBase.Tests
             
             List<Item> items = DbContext.Items.AsNoTracking().ToList();
             List<ItemVersion> itemVersions = DbContext.ItemVersions.AsNoTracking().ToList();
-            List<ItemList> itemLists = DbContext.ItemLists.AsNoTracking().ToList();
-            
+
             // Assert
             Assert.AreEqual(1, items.Count);
             Assert.AreEqual(2, itemVersions.Count);
@@ -118,6 +146,13 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(item.Description, items[0].Description);
             Assert.AreEqual(item.Enabled, items[0].Enabled);
             Assert.AreEqual(item.ItemListId, items[0].ItemListId);
+
+            Assert.AreEqual(item.UpdatedByUserId, items[0].UpdatedByUserId);
+            Assert.AreEqual(item.CreatedByUserId, items[0].CreatedByUserId);
+            Assert.AreEqual(item.WorkflowState, items[0].WorkflowState);
+            Assert.AreEqual(item.ItemNumber, items[0].ItemNumber);
+            Assert.AreEqual(item.LocationCode, items[0].LocationCode);
+            
             Assert.AreEqual(Constants.WorkflowStates.Created, items[0].WorkflowState);
             Assert.AreEqual(item.Id, items[0].Id);
             Assert.AreEqual(2, items[0].Version);
@@ -126,6 +161,14 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(item.Description, itemVersions[0].Description);
             Assert.AreEqual(item.Enabled, itemVersions[0].Enabled);
             Assert.AreEqual(item.ItemListId, itemVersions[0].ItemListId);
+
+            Assert.AreEqual(item.UpdatedByUserId, itemVersions[0].UpdatedByUserId);
+            Assert.AreEqual(item.CreatedByUserId, itemVersions[0].CreatedByUserId);
+            Assert.AreEqual(item.Version, itemVersions[0].Version);
+            Assert.AreEqual(item.WorkflowState, itemVersions[0].WorkflowState);
+            Assert.AreEqual(item.ItemNumber, itemVersions[0].ItemNumber);
+            Assert.AreEqual(item.LocationCode, itemVersions[0].LocationCode);
+
             Assert.AreEqual(Constants.WorkflowStates.Created, itemVersions[0].WorkflowState);
             Assert.AreEqual(item.Id, itemVersions[0].ItemId);
             Assert.AreEqual(1, itemVersions[0].Version);            
@@ -134,6 +177,14 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(item.Description, itemVersions[1].Description);
             Assert.AreEqual(item.Enabled, itemVersions[1].Enabled);
             Assert.AreEqual(item.ItemListId, itemVersions[1].ItemListId);
+
+            Assert.AreEqual(item.UpdatedByUserId, itemVersions[1].UpdatedByUserId);
+            Assert.AreEqual(item.CreatedByUserId, itemVersions[1].CreatedByUserId);
+            Assert.AreEqual(2, itemVersions[1].Version);
+            Assert.AreEqual(item.WorkflowState, itemVersions[1].WorkflowState);
+            Assert.AreEqual(item.ItemNumber, itemVersions[1].ItemNumber);
+            Assert.AreEqual(item.LocationCode, itemVersions[1].LocationCode);
+
             Assert.AreEqual(Constants.WorkflowStates.Created, itemVersions[1].WorkflowState);
             Assert.AreEqual(item.Id, itemVersions[1].ItemId);
             Assert.AreEqual(2, itemVersions[1].Version);
@@ -155,7 +206,14 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
                 Enabled = true,
-                ItemListId = itemList.Id
+                ItemListId = itemList.Id,
+                UpdatedByUserId = 1,
+                CreatedByUserId = 1,
+                Version = 1,
+                WorkflowState = Constants.WorkflowStates.Created,
+                ItemNumber = "1",
+                LocationCode = "2",
+                Sku = "3",
             };
             await item.Save(DbContext);
 
@@ -167,8 +225,7 @@ namespace Microting.ItemsPlanningBase.Tests
             
             List<Item> items = DbContext.Items.AsNoTracking().ToList();
             List<ItemVersion> itemVersions = DbContext.ItemVersions.AsNoTracking().ToList();
-            List<ItemList> itemLists = DbContext.ItemLists.AsNoTracking().ToList();
-            
+
             // Assert
             Assert.AreEqual(1, items.Count);
             Assert.AreEqual(2, itemVersions.Count);
@@ -176,6 +233,13 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(item.Description, items[0].Description);
             Assert.AreEqual(item.Enabled, items[0].Enabled);
             Assert.AreEqual(item.ItemListId, items[0].ItemListId);
+            Assert.AreEqual(item.UpdatedByUserId, items[0].UpdatedByUserId);
+            Assert.AreEqual(item.CreatedByUserId, items[0].CreatedByUserId);
+            Assert.AreEqual(item.Version, items[0].Version);
+            Assert.AreEqual(item.WorkflowState, items[0].WorkflowState);
+            Assert.AreEqual(item.ItemNumber, items[0].ItemNumber);
+            Assert.AreEqual(item.LocationCode, items[0].LocationCode);
+
             Assert.AreEqual(Constants.WorkflowStates.Removed, items[0].WorkflowState);
             Assert.AreEqual(item.Id, items[0].Id);
             Assert.AreEqual(2, items[0].Version);

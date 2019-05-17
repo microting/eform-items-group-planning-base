@@ -30,7 +30,6 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data
 {
     public class ItemsPlanningPnDbContext: DbContext, IPluginDbContext
     {
-
         public ItemsPlanningPnDbContext() { }
 
         public ItemsPlanningPnDbContext(DbContextOptions<ItemsPlanningPnDbContext> options) : base(options)
@@ -47,11 +46,5 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data
         
         public DbSet<PluginConfigurationValue> PluginConfigurationValues { get; set; }
         public DbSet<PluginConfigurationValueVersion> PluginConfigurationValueVersions { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-        }
     }
 }
