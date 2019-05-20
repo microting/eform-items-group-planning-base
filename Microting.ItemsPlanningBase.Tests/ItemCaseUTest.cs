@@ -51,7 +51,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
                 Enabled = true,
-                ItemListId = itemList.Id
+                ItemListId = itemList.Id,
             };
             
             await item.Save(DbContext);
@@ -62,7 +62,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 MicrotingSdkCaseId = 34,
                 MicrotingSdkeFormId = 234,
                 Status = 66,
-                ItemId = item.Id
+                ItemId = item.Id,
             };
 
             // Act

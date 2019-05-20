@@ -48,25 +48,40 @@ namespace Microting.ItemsPlanningBase.Tests
                 Enabled = true,
                 RelatedEFormId = 35,
                 RelatedEFormName = Guid.NewGuid().ToString(),
-                RepeatType = RepeatType.Day
+                RepeatType = RepeatType.Day,
+                UpdatedByUserId = 1,
+                CreatedByUserId = 1,
+                RepeatUntil = new DateTime(2050,1,1,1,1,1),
+                RepeatOn = RepeatOn.Friday,
+                RepeatEvery = 1,
+                Version = 1,
+                WorkflowState = Constants.WorkflowStates.Created,
             };
 
             // Act
             await itemList.Save(DbContext);
 
-            List<ItemList> itemLists = DbContext.ItemLists.AsNoTracking().ToList();
+            List<ItemList> itemLists = DbContext.ItemLists
+                .AsNoTracking()
+                .ToList();
+
             List<ItemListVersion> itemListVersions = DbContext.ItemListVersions.AsNoTracking().ToList();
             
             // Assert
             Assert.AreEqual(1, itemLists.Count);
             Assert.AreEqual(1, itemListVersions.Count);
             Assert.AreEqual(itemList.Name, itemLists[0].Name);
+            Assert.AreEqual(itemList.CreatedByUserId, itemLists[0].CreatedByUserId);
+            Assert.AreEqual(itemList.UpdatedByUserId, itemLists[0].UpdatedByUserId);
             Assert.AreEqual(itemList.Description, itemLists[0].Description);
             Assert.AreEqual(itemList.Enabled, itemLists[0].Enabled);
             Assert.AreEqual(itemList.RepeatType, itemLists[0].RepeatType);
             Assert.AreEqual(itemList.RelatedEFormId, itemLists[0].RelatedEFormId);
             Assert.AreEqual(itemList.RelatedEFormName, itemLists[0].RelatedEFormName);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemLists[0].WorkflowState);
+            Assert.AreEqual(itemList.RepeatUntil, itemLists[0].RepeatUntil);
+            Assert.AreEqual(itemList.RepeatOn, itemLists[0].RepeatOn);
+            Assert.AreEqual(itemList.RepeatEvery, itemLists[0].RepeatEvery);
             Assert.AreEqual(itemList.Id, itemLists[0].Id);
             Assert.AreEqual(1, itemLists[0].Version);
                         
@@ -78,7 +93,9 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemList.RelatedEFormName, itemListVersions[0].RelatedEFormName);
             Assert.AreEqual(itemList.Id, itemListVersions[0].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemListVersions[0].WorkflowState);
-            Assert.AreEqual(itemList.Id, itemListVersions[0].Id);
+            Assert.AreEqual(itemList.RepeatUntil, itemListVersions[0].RepeatUntil);
+            Assert.AreEqual(itemList.RepeatOn, itemListVersions[0].RepeatOn);
+            Assert.AreEqual(itemList.RepeatEvery, itemListVersions[0].RepeatEvery);
             Assert.AreEqual(1, itemListVersions[0].Version);
         }
 
@@ -93,7 +110,15 @@ namespace Microting.ItemsPlanningBase.Tests
                 Enabled = true,
                 RelatedEFormId = 35,
                 RelatedEFormName = Guid.NewGuid().ToString(),
-                RepeatType = RepeatType.Day
+                RepeatType = RepeatType.Day,
+                UpdatedByUserId = 1,
+                CreatedByUserId = 1,
+                RepeatUntil = new DateTime(2050,1,1,1,1,1),
+                RepeatOn = RepeatOn.Friday,
+                RepeatEvery = 1,
+                Version = 1,
+                WorkflowState = Constants.WorkflowStates.Created,
+                
             };
             await itemList.Save(DbContext);
 
@@ -113,6 +138,11 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemList.Name, itemLists[0].Name);
             Assert.AreEqual(itemList.Description, itemLists[0].Description);
             Assert.AreEqual(itemList.Enabled, itemLists[0].Enabled);
+            Assert.AreEqual(itemList.UpdatedByUserId, itemLists[0].UpdatedByUserId);
+            Assert.AreEqual(itemList.CreatedByUserId, itemLists[0].CreatedByUserId);
+            Assert.AreEqual(itemList.RepeatUntil, itemLists[0].RepeatUntil);
+            Assert.AreEqual(itemList.RepeatOn, itemLists[0].RepeatOn);
+            Assert.AreEqual(itemList.RepeatEvery, itemLists[0].RepeatEvery);
             Assert.AreEqual(itemList.RepeatType, itemLists[0].RepeatType);
             Assert.AreEqual(itemList.RelatedEFormId, itemLists[0].RelatedEFormId);
             Assert.AreEqual(itemList.RelatedEFormName, itemLists[0].RelatedEFormName);
@@ -126,16 +156,28 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemList.RepeatType, itemListVersions[0].RepeatType);
             Assert.AreEqual(itemList.RelatedEFormId, itemListVersions[0].RelatedEFormId);
             Assert.AreEqual(itemList.RelatedEFormName, itemListVersions[0].RelatedEFormName);
+
+            Assert.AreEqual(itemList.UpdatedByUserId, itemListVersions[0].UpdatedByUserId);
+            Assert.AreEqual(itemList.CreatedByUserId, itemListVersions[0].CreatedByUserId);
+            Assert.AreEqual(itemList.RepeatUntil, itemListVersions[0].RepeatUntil);
+            Assert.AreEqual(itemList.RepeatOn, itemListVersions[0].RepeatOn);
+            Assert.AreEqual(itemList.RepeatEvery, itemListVersions[0].RepeatEvery);
             Assert.AreEqual(itemList.Id, itemListVersions[0].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemListVersions[0].WorkflowState);
             Assert.AreEqual(1, itemListVersions[0].Version);
-            
             Assert.AreEqual("hello", itemListVersions[1].Name);
             Assert.AreEqual(itemList.Description, itemListVersions[1].Description);
             Assert.AreEqual(itemList.Enabled, itemListVersions[1].Enabled);
             Assert.AreEqual(itemList.RepeatType, itemListVersions[1].RepeatType);
             Assert.AreEqual(itemList.RelatedEFormId, itemListVersions[1].RelatedEFormId);
             Assert.AreEqual(itemList.RelatedEFormName, itemListVersions[1].RelatedEFormName);
+
+            Assert.AreEqual(itemList.UpdatedByUserId, itemListVersions[1].UpdatedByUserId);
+            Assert.AreEqual(itemList.CreatedByUserId, itemListVersions[1].CreatedByUserId);
+            Assert.AreEqual(itemList.RepeatUntil, itemListVersions[1].RepeatUntil);
+            Assert.AreEqual(itemList.RepeatOn, itemListVersions[1].RepeatOn);
+            Assert.AreEqual(itemList.RepeatEvery, itemListVersions[1].RepeatEvery);
+
             Assert.AreEqual(itemList.Id, itemListVersions[1].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemListVersions[1].WorkflowState);
             Assert.AreEqual(2, itemListVersions[1].Version);
@@ -152,12 +194,20 @@ namespace Microting.ItemsPlanningBase.Tests
                 Enabled = true,
                 RelatedEFormId = 35,
                 RelatedEFormName = Guid.NewGuid().ToString(),
-                RepeatType = RepeatType.Day
+                RepeatType = RepeatType.Day,
+                UpdatedByUserId = 1,
+                CreatedByUserId = 1,
+                RepeatEvery = 1,
+                RepeatUntil = new DateTime(2050,1,1,1,1,1),
+                WorkflowState = Constants.WorkflowStates.Created,
+                RepeatOn = RepeatOn.Friday,
             };
             await itemList.Save(DbContext);
 
             // Act
             itemList = await DbContext.ItemLists.AsNoTracking().FirstOrDefaultAsync();
+
+            Assert.AreEqual(Constants.WorkflowStates.Created, itemList.WorkflowState);
 
             await itemList.Delete(DbContext);
 
@@ -173,6 +223,13 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemList.RepeatType, itemLists[0].RepeatType);
             Assert.AreEqual(itemList.RelatedEFormId, itemLists[0].RelatedEFormId);
             Assert.AreEqual(itemList.RelatedEFormName, itemLists[0].RelatedEFormName);
+
+            Assert.AreEqual(itemList.UpdatedByUserId, itemLists[0].UpdatedByUserId);
+            Assert.AreEqual(itemList.CreatedByUserId, itemLists[0].CreatedByUserId);
+            Assert.AreEqual(itemList.RepeatEvery, itemLists[0].RepeatEvery);
+            Assert.AreEqual(itemList.RepeatUntil, itemLists[0].RepeatUntil);
+            Assert.AreEqual(itemList.RepeatOn, itemLists[0].RepeatOn);
+
             Assert.AreEqual(Constants.WorkflowStates.Removed, itemLists[0].WorkflowState);
             Assert.AreEqual(itemList.Id, itemLists[0].Id);
             Assert.AreEqual(2, itemLists[0].Version);
@@ -183,6 +240,13 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemList.RepeatType, itemListVersions[0].RepeatType);
             Assert.AreEqual(itemList.RelatedEFormId, itemListVersions[0].RelatedEFormId);
             Assert.AreEqual(itemList.RelatedEFormName, itemListVersions[0].RelatedEFormName);
+
+            Assert.AreEqual(itemList.UpdatedByUserId, itemListVersions[0].UpdatedByUserId);
+            Assert.AreEqual(itemList.CreatedByUserId, itemListVersions[0].CreatedByUserId);
+            Assert.AreEqual(itemList.RepeatEvery, itemListVersions[0].RepeatEvery);
+            Assert.AreEqual(itemList.RepeatUntil, itemListVersions[0].RepeatUntil);
+            Assert.AreEqual(itemList.RepeatOn, itemListVersions[0].RepeatOn);
+
             Assert.AreEqual(itemList.Id, itemListVersions[0].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemListVersions[0].WorkflowState);
             Assert.AreEqual(1, itemListVersions[0].Version);
@@ -193,6 +257,12 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemList.RepeatType, itemListVersions[1].RepeatType);
             Assert.AreEqual(itemList.RelatedEFormId, itemListVersions[1].RelatedEFormId);
             Assert.AreEqual(itemList.RelatedEFormName, itemListVersions[1].RelatedEFormName);
+            Assert.AreEqual(itemList.UpdatedByUserId, itemListVersions[1].UpdatedByUserId);
+            Assert.AreEqual(itemList.CreatedByUserId, itemListVersions[1].CreatedByUserId);
+            Assert.AreEqual(itemList.RepeatEvery, itemListVersions[1].RepeatEvery);
+            Assert.AreEqual(itemList.RepeatUntil, itemListVersions[1].RepeatUntil);
+            Assert.AreEqual(itemList.RepeatOn, itemListVersions[1].RepeatOn);
+
             Assert.AreEqual(itemList.Id, itemListVersions[1].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Removed, itemListVersions[1].WorkflowState);
             Assert.AreEqual(2, itemListVersions[1].Version);
