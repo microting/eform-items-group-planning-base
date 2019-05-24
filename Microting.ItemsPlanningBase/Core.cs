@@ -25,6 +25,5 @@ namespace Microting.ItemsPlanningBase
 {
     public class Core
     {
-        
     }
 }

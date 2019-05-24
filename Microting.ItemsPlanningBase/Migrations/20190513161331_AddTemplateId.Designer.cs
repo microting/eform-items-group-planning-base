@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microting.ItemsPlanningBase.Infrastructure.Data;
 
 namespace Microting.ItemsPlanningBase.Migrations
 {
     [DbContext(typeof(ItemsPlanningPnDbContext))]
-    partial class ItemsPlanningPnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190513161331_AddTemplateId")]
+    partial class AddTemplateId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             string autoIdGenStrategy = "SqlServer:ValueGenerationStrategy";
@@ -165,6 +167,8 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<DateTime?>("RepeatUntil");
 
+                    b.Property<int>("TemplateId");
+
                     b.Property<DateTime?>("UpdatedAt");
 
                     b.Property<int>("UpdatedByUserId");
@@ -208,6 +212,8 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<int>("RepeatType");
 
                     b.Property<DateTime?>("RepeatUntil");
+
+                    b.Property<int>("TemplateId");
 
                     b.Property<DateTime?>("UpdatedAt");
 

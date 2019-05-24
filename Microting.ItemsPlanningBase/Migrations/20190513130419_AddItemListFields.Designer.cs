@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microting.ItemsPlanningBase.Infrastructure.Data;
 
 namespace Microting.ItemsPlanningBase.Migrations
 {
     [DbContext(typeof(ItemsPlanningPnDbContext))]
-    partial class ItemsPlanningPnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190513130419_AddItemListFields")]
+    partial class AddItemListFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             string autoIdGenStrategy = "SqlServer:ValueGenerationStrategy";
@@ -21,7 +23,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                 autoIdGenStrategy = "MySql:ValueGenerationStrategy";
                 autoIdGenStrategyValue = MySqlValueGenerationStrategy.IdentityColumn;
             }
-
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
@@ -50,6 +51,8 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<string>("Name");
 
                     b.Property<string>("Sku");
+
+                    b.Property<int>("TemplateId");
 
                     b.Property<DateTime?>("UpdatedAt");
 
@@ -248,6 +251,8 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<string>("Name");
 
                     b.Property<string>("Sku");
+
+                    b.Property<int>("TemplateId");
 
                     b.Property<DateTime?>("UpdatedAt");
 

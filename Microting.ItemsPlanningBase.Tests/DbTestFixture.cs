@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,7 +36,6 @@ namespace Microting.ItemsPlanningBase.Tests
     [TestFixture]
     public abstract class DbTestFixture
     {
-
         protected ItemsPlanningPnDbContext DbContext;
         private string _connectionString;
 
@@ -55,10 +55,12 @@ namespace Microting.ItemsPlanningBase.Tests
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 _connectionString = @"data source=(LocalDb)\SharedInstance;Initial catalog=items-planning-pn-tests;Integrated Security=true";
+                //_connectionString = @"Data Source=.\SQLEXPRESS;Database=123_iptest;Integrated Security=True";
             }
             else
             {
-                _connectionString = @"Server = localhost; port = 3306; Database = items-planning-pn-tests; user = root; Convert Zero Datetime = true;";
+                _connectionString =
+                    @"Server = localhost; port = 3306; Database = items-planning-pn-tests; user = root; Convert Zero Datetime = true;";
             }
 
             GetContext(_connectionString);
@@ -74,6 +76,7 @@ namespace Microting.ItemsPlanningBase.Tests
             {
                 DbContext.Database.Migrate();
             }
+
             DoSetup();
         }
 
@@ -112,6 +115,7 @@ namespace Microting.ItemsPlanningBase.Tests
                     {
                         sqlCmd = $"DELETE FROM [{modelName}]";
                     }
+
                     DbContext.Database.ExecuteSqlCommand(sqlCmd);
                 }
                 catch (Exception ex)
@@ -120,6 +124,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 }
             }
         }
+
         private string path;
 
         private void ClearFile()
@@ -138,11 +143,13 @@ namespace Microting.ItemsPlanningBase.Tests
                     file.Delete();
                 }
             }
-            catch { }
-
-
+            catch
+            {
+            }
         }
 
-        protected virtual void DoSetup() { }
+        protected virtual void DoSetup()
+        {
+        }
     }
 }

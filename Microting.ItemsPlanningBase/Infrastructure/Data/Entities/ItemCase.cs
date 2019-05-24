@@ -21,28 +21,29 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Threading.Tasks;
 using eFormShared;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
+    using Microsoft.EntityFrameworkCore;
+
     public class ItemCase : BaseEntity
     {
         public int MicrotingSdkSiteId { get; set; }
-        
+
         public int MicrotingSdkeFormId { get; set; }
-        
+
         public int Status { get; set; }
-        
+
         public int MicrotingSdkCaseId { get; set; }
 
-        [ForeignKey("Item")]
-        public int ItemId { get; set; }
-        
+        [ForeignKey("Item")] public int ItemId { get; set; }
+
         public async Task Save(ItemsPlanningPnDbContext dbContext)
         {
             ItemCase itemCase = new ItemCase
@@ -58,18 +59,18 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 WorkflowState = Constants.WorkflowStates.Created
             };
 
-            dbContext.ItemCases.Add(itemCase);
-            dbContext.SaveChanges();
+            await dbContext.ItemCases.AddAsync(itemCase);
+            await dbContext.SaveChangesAsync();
 
-            dbContext.ItemCaseVersions.Add(MapItemCaseVersion(itemCase));
-            dbContext.SaveChanges();
+            await dbContext.ItemCaseVersions.AddAsync(MapItemCaseVersion(itemCase));
+            await dbContext.SaveChangesAsync();
 
             Id = itemCase.Id;
         }
 
         public async Task Update(ItemsPlanningPnDbContext dbContext)
         {
-            ItemCase itemCase = dbContext.ItemCases.FirstOrDefault(x => x.Id == Id);
+            ItemCase itemCase = await dbContext.ItemCases.FirstOrDefaultAsync(x => x.Id == Id);
 
             if (itemCase == null)
             {
@@ -88,14 +89,14 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 itemCase.UpdatedAt = DateTime.UtcNow;
                 itemCase.Version += 1;
 
-                dbContext.ItemCaseVersions.Add(MapItemCaseVersion(itemCase));
-                dbContext.SaveChanges();
+                await dbContext.ItemCaseVersions.AddAsync(MapItemCaseVersion(itemCase));
+                await dbContext.SaveChangesAsync();
             }
         }
 
         public async Task Delete(ItemsPlanningPnDbContext dbContext)
-        {            
-            ItemCase itemCase = dbContext.ItemCases.FirstOrDefault(x => x.Id == Id);
+        {
+            ItemCase itemCase = await dbContext.ItemCases.FirstOrDefaultAsync(x => x.Id == Id);
 
             if (itemCase == null)
             {
@@ -103,33 +104,32 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             }
 
             itemCase.WorkflowState = Constants.WorkflowStates.Removed;
-            
+
             if (dbContext.ChangeTracker.HasChanges())
             {
                 itemCase.UpdatedAt = DateTime.UtcNow;
                 itemCase.Version += 1;
 
-                dbContext.ItemCaseVersions.Add(MapItemCaseVersion(itemCase));
-                dbContext.SaveChanges();
+                await dbContext.ItemCaseVersions.AddAsync(MapItemCaseVersion(itemCase));
+                await dbContext.SaveChangesAsync();
             }
-            
         }
 
         private ItemCaseVersion MapItemCaseVersion(ItemCase item)
         {
-            ItemCaseVersion itemCaseVersion = new ItemCaseVersion();
-
-            itemCaseVersion.MicrotingSdkSiteId = item.MicrotingSdkSiteId;
-            itemCaseVersion.MicrotingSdkeFormId = item.MicrotingSdkeFormId;
-            itemCaseVersion.Status = item.Status;
-            itemCaseVersion.MicrotingSdkCaseId = item.MicrotingSdkCaseId;
-            itemCaseVersion.ItemId = item.ItemId;
-            itemCaseVersion.ItemCaseId = item.Id;
-            itemCaseVersion.Version = item.Version;
-            itemCaseVersion.CreatedAt = item.CreatedAt;
-            itemCaseVersion.UpdatedAt = item.UpdatedAt;
-            itemCaseVersion.WorkflowState = item.WorkflowState;
-
+            ItemCaseVersion itemCaseVersion = new ItemCaseVersion
+            {
+                MicrotingSdkSiteId = item.MicrotingSdkSiteId,
+                MicrotingSdkeFormId = item.MicrotingSdkeFormId,
+                Status = item.Status,
+                MicrotingSdkCaseId = item.MicrotingSdkCaseId,
+                ItemId = item.ItemId,
+                ItemCaseId = item.Id,
+                Version = item.Version,
+                CreatedAt = item.CreatedAt,
+                UpdatedAt = item.UpdatedAt,
+                WorkflowState = item.WorkflowState
+            };
 
             return itemCaseVersion;
         }
