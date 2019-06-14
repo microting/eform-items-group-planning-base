@@ -42,7 +42,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
         public int MicrotingSdkCaseId { get; set; }
 
-        [ForeignKey("Item")] public int ItemId { get; set; }
+        [ForeignKey("Item")]
+        public int ItemId { get; set; }
 
         public async Task Save(ItemsPlanningPnDbContext dbContext)
         {

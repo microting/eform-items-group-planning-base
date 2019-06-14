@@ -36,10 +36,13 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
     {
         public string Name { get; set; }
         public string Description { get; set; }
+
         public int RepeatEvery { get; set; }
         public RepeatType RepeatType { get; set; }
-        public RepeatOn RepeatOn { get; set; }
+        public RepeatOn? RepeatOn { get; set; }
         public DateTime? RepeatUntil { get; set; }
+        public int? DayOfMonth { get; set; }
+        
         public bool Enabled { get; set; }
         public int RelatedEFormId { get; set; }
         public string RelatedEFormName { get; set; }
@@ -58,6 +61,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 RepeatEvery = RepeatEvery,
                 RepeatOn = RepeatOn,
                 RepeatType = RepeatType,
+                DayOfMonth = DayOfMonth,
                 RepeatUntil = RepeatUntil,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
@@ -95,6 +99,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemList.RepeatEvery = RepeatEvery;
             itemList.RepeatOn = RepeatOn;
             itemList.RepeatType = RepeatType;
+            itemList.DayOfMonth = DayOfMonth;
             itemList.WorkflowState = WorkflowState;
             itemList.UpdatedByUserId = UpdatedByUserId;
 
@@ -143,6 +148,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 RepeatOn = itemList.RepeatOn,
                 RepeatEvery = itemList.RepeatEvery,
                 RepeatType = itemList.RepeatType,
+                DayOfMonth = itemList.DayOfMonth,
                 ItemListId = itemList.Id,
                 Version = itemList.Version,
                 CreatedAt = itemList.CreatedAt,
