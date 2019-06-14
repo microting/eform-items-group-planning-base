@@ -33,10 +33,13 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
     {                              
         public string Name { get; set; }
         public string Description { get; set; }
+
         public int RepeatEvery { get; set; }
         public RepeatType RepeatType { get; set; }
-        public RepeatOn RepeatOn { get; set; }
+        public RepeatOn? RepeatOn { get; set; }
         public DateTime? RepeatUntil { get; set; }
+        public int? DayOfMonth { get; set; }
+
         public bool Enabled { get; set; }
         public int RelatedEFormId { get; set; }
         public string RelatedEFormName { get; set; }
