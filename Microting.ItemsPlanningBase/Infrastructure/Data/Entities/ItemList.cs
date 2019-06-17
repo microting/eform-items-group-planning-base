@@ -43,9 +43,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public DayOfWeek? DayOfWeek { get; set; }
         public int? DayOfMonth { get; set; }
         public DateTime? LastExecutedTime { get; set; }
-        public int ExecutedCount { get; set; } = 0;
-        public int? MaxExecutedCount { get; set; }
-        
+
         public bool Enabled { get; set; }
         public int RelatedEFormId { get; set; }
         public string RelatedEFormName { get; set; }
