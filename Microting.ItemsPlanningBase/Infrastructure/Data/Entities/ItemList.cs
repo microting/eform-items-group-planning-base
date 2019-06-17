@@ -21,11 +21,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+using eFormShared;
+using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using eFormShared;
-using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
@@ -39,9 +39,12 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
         public int RepeatEvery { get; set; }
         public RepeatType RepeatType { get; set; }
-        public RepeatOn? RepeatOn { get; set; }
         public DateTime? RepeatUntil { get; set; }
+        public DayOfWeek? DayOfWeek { get; set; }
         public int? DayOfMonth { get; set; }
+        public DateTime? LastExecutedTime { get; set; }
+        public int ExecutedCount { get; set; } = 0;
+        public int? MaxExecutedCount { get; set; }
         
         public bool Enabled { get; set; }
         public int RelatedEFormId { get; set; }
@@ -59,7 +62,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 RelatedEFormId = RelatedEFormId,
                 RelatedEFormName = RelatedEFormName,
                 RepeatEvery = RepeatEvery,
-                RepeatOn = RepeatOn,
+                DayOfWeek = DayOfWeek,
                 RepeatType = RepeatType,
                 DayOfMonth = DayOfMonth,
                 RepeatUntil = RepeatUntil,
@@ -97,7 +100,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemList.RelatedEFormId = RelatedEFormId;
             itemList.RelatedEFormName = RelatedEFormName;
             itemList.RepeatEvery = RepeatEvery;
-            itemList.RepeatOn = RepeatOn;
+            itemList.DayOfWeek = DayOfWeek;
             itemList.RepeatType = RepeatType;
             itemList.DayOfMonth = DayOfMonth;
             itemList.WorkflowState = WorkflowState;
@@ -145,7 +148,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 RepeatUntil = itemList.RepeatUntil,
                 RelatedEFormId = itemList.RelatedEFormId,
                 RelatedEFormName = itemList.RelatedEFormName,
-                RepeatOn = itemList.RepeatOn,
+                DayOfWeek = itemList.DayOfWeek,
                 RepeatEvery = itemList.RepeatEvery,
                 RepeatType = itemList.RepeatType,
                 DayOfMonth = itemList.DayOfMonth,
