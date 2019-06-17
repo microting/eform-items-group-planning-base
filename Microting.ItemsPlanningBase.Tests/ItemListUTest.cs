@@ -52,7 +52,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 UpdatedByUserId = 1,
                 CreatedByUserId = 1,
                 RepeatUntil = new DateTime(2050,1,1,1,1,1),
-                RepeatOn = RepeatOn.Friday,
+                DayOfWeek = DayOfWeek.Friday,
                 RepeatEvery = 1,
                 DayOfMonth = 3,
                 Version = 1,
@@ -81,7 +81,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemList.RelatedEFormName, itemLists[0].RelatedEFormName);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemLists[0].WorkflowState);
             Assert.AreEqual(itemList.RepeatUntil, itemLists[0].RepeatUntil);
-            Assert.AreEqual(itemList.RepeatOn, itemLists[0].RepeatOn);
+            Assert.AreEqual(itemList.DayOfWeek, itemLists[0].DayOfWeek);
             Assert.AreEqual(itemList.RepeatEvery, itemLists[0].RepeatEvery);
             Assert.AreEqual(itemList.DayOfMonth, itemLists[0].DayOfMonth);
             Assert.AreEqual(itemList.Id, itemLists[0].Id);
@@ -96,7 +96,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemList.Id, itemListVersions[0].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemListVersions[0].WorkflowState);
             Assert.AreEqual(itemList.RepeatUntil, itemListVersions[0].RepeatUntil);
-            Assert.AreEqual(itemList.RepeatOn, itemListVersions[0].RepeatOn);
+            Assert.AreEqual(itemList.DayOfWeek, itemListVersions[0].DayOfWeek);
             Assert.AreEqual(itemList.DayOfMonth, itemListVersions[0].DayOfMonth);
             Assert.AreEqual(itemList.RepeatEvery, itemListVersions[0].RepeatEvery);
             Assert.AreEqual(1, itemListVersions[0].Version);
@@ -117,7 +117,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 UpdatedByUserId = 1,
                 CreatedByUserId = 1,
                 RepeatUntil = new DateTime(2050,1,1,1,1,1),
-                RepeatOn = RepeatOn.Friday,
+                DayOfWeek = DayOfWeek.Friday,
                 RepeatEvery = 1,
                 DayOfMonth = 1,
                 Version = 1,
@@ -145,7 +145,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemList.UpdatedByUserId, itemLists[0].UpdatedByUserId);
             Assert.AreEqual(itemList.CreatedByUserId, itemLists[0].CreatedByUserId);
             Assert.AreEqual(itemList.RepeatUntil, itemLists[0].RepeatUntil);
-            Assert.AreEqual(itemList.RepeatOn, itemLists[0].RepeatOn);
+            Assert.AreEqual(itemList.DayOfWeek, itemLists[0].DayOfWeek);
             Assert.AreEqual(itemList.RepeatEvery, itemLists[0].RepeatEvery);
             Assert.AreEqual(itemList.RepeatType, itemLists[0].RepeatType);
             Assert.AreEqual(itemList.DayOfMonth, itemLists[0].DayOfMonth);
@@ -165,7 +165,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemList.UpdatedByUserId, itemListVersions[0].UpdatedByUserId);
             Assert.AreEqual(itemList.CreatedByUserId, itemListVersions[0].CreatedByUserId);
             Assert.AreEqual(itemList.RepeatUntil, itemListVersions[0].RepeatUntil);
-            Assert.AreEqual(itemList.RepeatOn, itemListVersions[0].RepeatOn);
+            Assert.AreEqual(itemList.DayOfWeek, itemListVersions[0].DayOfWeek);
             Assert.AreEqual(itemList.RepeatEvery, itemListVersions[0].RepeatEvery);
             Assert.AreEqual(itemList.Id, itemListVersions[0].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemListVersions[0].WorkflowState);
@@ -180,7 +180,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemList.UpdatedByUserId, itemListVersions[1].UpdatedByUserId);
             Assert.AreEqual(itemList.CreatedByUserId, itemListVersions[1].CreatedByUserId);
             Assert.AreEqual(itemList.RepeatUntil, itemListVersions[1].RepeatUntil);
-            Assert.AreEqual(itemList.RepeatOn, itemListVersions[1].RepeatOn);
+            Assert.AreEqual(itemList.DayOfWeek, itemListVersions[1].DayOfWeek);
             Assert.AreEqual(itemList.RepeatEvery, itemListVersions[1].RepeatEvery);
 
             Assert.AreEqual(itemList.Id, itemListVersions[1].ItemListId);
@@ -206,7 +206,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 DayOfMonth = 1,
                 RepeatUntil = new DateTime(2050,1,1,1,1,1),
                 WorkflowState = Constants.WorkflowStates.Created,
-                RepeatOn = RepeatOn.Friday,
+                DayOfWeek = DayOfWeek.Friday,
             };
             await itemList.Save(DbContext);
 
@@ -234,7 +234,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemList.CreatedByUserId, itemLists[0].CreatedByUserId);
             Assert.AreEqual(itemList.RepeatEvery, itemLists[0].RepeatEvery);
             Assert.AreEqual(itemList.RepeatUntil, itemLists[0].RepeatUntil);
-            Assert.AreEqual(itemList.RepeatOn, itemLists[0].RepeatOn);
+            Assert.AreEqual(itemList.DayOfWeek, itemLists[0].DayOfWeek);
             Assert.AreEqual(itemList.DayOfMonth, itemLists[0].DayOfMonth);
 
             Assert.AreEqual(Constants.WorkflowStates.Removed, itemLists[0].WorkflowState);
@@ -252,7 +252,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemList.CreatedByUserId, itemListVersions[0].CreatedByUserId);
             Assert.AreEqual(itemList.RepeatEvery, itemListVersions[0].RepeatEvery);
             Assert.AreEqual(itemList.RepeatUntil, itemListVersions[0].RepeatUntil);
-            Assert.AreEqual(itemList.RepeatOn, itemListVersions[0].RepeatOn);
+            Assert.AreEqual(itemList.DayOfWeek, itemListVersions[0].DayOfWeek);
             Assert.AreEqual(itemList.DayOfMonth, itemListVersions[0].DayOfMonth);
 
             Assert.AreEqual(itemList.Id, itemListVersions[0].ItemListId);
@@ -269,7 +269,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemList.CreatedByUserId, itemListVersions[1].CreatedByUserId);
             Assert.AreEqual(itemList.RepeatEvery, itemListVersions[1].RepeatEvery);
             Assert.AreEqual(itemList.RepeatUntil, itemListVersions[1].RepeatUntil);
-            Assert.AreEqual(itemList.RepeatOn, itemListVersions[1].RepeatOn);
+            Assert.AreEqual(itemList.DayOfWeek, itemListVersions[1].DayOfWeek);
 
             Assert.AreEqual(itemList.Id, itemListVersions[1].ItemListId);
             Assert.AreEqual(Constants.WorkflowStates.Removed, itemListVersions[1].WorkflowState);

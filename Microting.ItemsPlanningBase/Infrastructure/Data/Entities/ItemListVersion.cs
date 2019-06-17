@@ -36,9 +36,10 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
         public int RepeatEvery { get; set; }
         public RepeatType RepeatType { get; set; }
-        public RepeatOn? RepeatOn { get; set; }
         public DateTime? RepeatUntil { get; set; }
+        public DayOfWeek? DayOfWeek { get; set; }
         public int? DayOfMonth { get; set; }
+        public DateTime? LastExecutedTime { get; set; }
 
         public bool Enabled { get; set; }
         public int RelatedEFormId { get; set; }

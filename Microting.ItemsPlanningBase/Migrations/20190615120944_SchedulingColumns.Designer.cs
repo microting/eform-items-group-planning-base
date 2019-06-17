@@ -3,14 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microting.ItemsPlanningBase.Infrastructure.Data;
 
 namespace Microting.ItemsPlanningBase.Migrations
 {
     [DbContext(typeof(ItemsPlanningPnDbContext))]
-    partial class ItemsPlanningPnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190615120944_SchedulingColumns")]
+    partial class SchedulingColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             string autoIdGenStrategy = "SqlServer:ValueGenerationStrategy";
@@ -154,7 +157,11 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<bool>("Enabled");
 
+                    b.Property<int>("ExecutedCount");
+
                     b.Property<DateTime?>("LastExecutedTime");
+
+                    b.Property<int?>("MaxExecutedCount");
 
                     b.Property<string>("Name");
 
@@ -200,9 +207,13 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<bool>("Enabled");
 
+                    b.Property<int>("ExecutedCount");
+
                     b.Property<int>("ItemListId");
 
                     b.Property<DateTime?>("LastExecutedTime");
+
+                    b.Property<int?>("MaxExecutedCount");
 
                     b.Property<string>("Name");
 
