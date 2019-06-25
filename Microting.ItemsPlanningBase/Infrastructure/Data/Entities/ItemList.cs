@@ -71,6 +71,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 Items = Items,
                 CreatedByUserId = CreatedByUserId,
                 UpdatedByUserId = UpdatedByUserId,
+                LastExecutedTime = LastExecutedTime
             };
 
             await dbContext.ItemLists.AddAsync(itemList);
@@ -103,6 +104,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemList.DayOfMonth = DayOfMonth;
             itemList.WorkflowState = WorkflowState;
             itemList.UpdatedByUserId = UpdatedByUserId;
+            itemList.LastExecutedTime = LastExecutedTime;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
@@ -157,6 +159,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 UpdatedAt = itemList.UpdatedAt,
                 UpdatedByUserId = itemList.UpdatedByUserId,
                 CreatedByUserId = itemList.CreatedByUserId,
+                LastExecutedTime = itemList.LastExecutedTime
+                
             };
 
             return itemVersion;
