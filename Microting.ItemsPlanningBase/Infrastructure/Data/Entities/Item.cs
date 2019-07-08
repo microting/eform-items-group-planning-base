@@ -39,6 +39,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public bool Enabled { get; set; }
         public string ItemNumber { get; set; }
         public string LocationCode { get; set; }
+        public string BuildYear { get; set; }
+        public string Type { get; set; }
 
         [ForeignKey("ItemList")]
         public int ItemListId { get; set; }
@@ -54,6 +56,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 ItemNumber = ItemNumber,
                 LocationCode = LocationCode,
                 ItemListId = ItemListId,
+                BuildYear = BuildYear,
+                Type = Type,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
                 Version = 1,
@@ -86,6 +90,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             item.WorkflowState = WorkflowState;
             item.ItemNumber = ItemNumber;
             item.LocationCode = LocationCode;
+            item.BuildYear = BuildYear;
+            item.Type = Type;
             item.UpdatedAt = UpdatedAt;
             item.UpdatedByUserId = UpdatedByUserId;
 
@@ -136,6 +142,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 UpdatedAt = item.UpdatedAt,
                 LocationCode = item.LocationCode,
                 ItemNumber = item.ItemNumber,
+                BuildYear = item.BuildYear,
+                Type = item.Type,
                 WorkflowState = item.WorkflowState,
                 UpdatedByUserId = item.UpdatedByUserId,
                 CreatedByUserId = item.CreatedByUserId,

@@ -34,6 +34,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public bool Enabled { get; set; }
         public string ItemNumber { get; set; }
         public string LocationCode { get; set; }
+        public string BuildYear { get; set; }
+        public string Type { get; set; }
         
         public int ItemListId { get; set; }    
         
