@@ -25,7 +25,7 @@ SOFTWARE.
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
-using eFormShared;
+using Microting.eForm.Infrastructure.Constants;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
