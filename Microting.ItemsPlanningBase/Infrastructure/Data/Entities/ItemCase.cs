@@ -43,6 +43,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public int MicrotingSdkCaseId { get; set; }
         
         public DateTime? MicrotingSdkCaseDoneAt { get; set; }
+        
+        public int NumberOfImages { get; set; }
 
         [ForeignKey("Item")]
         public int ItemId { get; set; }
@@ -78,6 +80,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemCase.ItemId = ItemId;
             itemCase.MicrotingSdkCaseDoneAt = MicrotingSdkCaseDoneAt;
             itemCase.WorkflowState = WorkflowState;
+            itemCase.NumberOfImages = NumberOfImages;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
@@ -120,6 +123,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 MicrotingSdkCaseId = item.MicrotingSdkCaseId,
                 ItemId = item.ItemId,
                 MicrotingSdkCaseDoneAt = item.MicrotingSdkCaseDoneAt,
+                NumberOfImages = item.NumberOfImages,
                 ItemCaseId = item.Id,
                 Version = item.Version,
                 CreatedAt = item.CreatedAt,
