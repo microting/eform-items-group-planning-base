@@ -41,6 +41,10 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public DateTime? MicrotingSdkCaseDoneAt { get; set; }
         
         public int NumberOfImages { get; set; }
+        
+        public string Comment { get; set; }
+        
+        public string Location { get; set; }
                 
         public int ItemId { get; set; }
 
