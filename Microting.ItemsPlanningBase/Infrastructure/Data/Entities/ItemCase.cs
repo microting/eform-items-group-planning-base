@@ -41,32 +41,25 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public int Status { get; set; }
 
         public int MicrotingSdkCaseId { get; set; }
+        
+        public DateTime? MicrotingSdkCaseDoneAt { get; set; }
 
         [ForeignKey("Item")]
         public int ItemId { get; set; }
 
-        public async Task Save(ItemsPlanningPnDbContext dbContext)
+        public async Task Create(ItemsPlanningPnDbContext dbContext)
         {
-            ItemCase itemCase = new ItemCase
-            {
-                MicrotingSdkSiteId = MicrotingSdkSiteId,
-                MicrotingSdkeFormId = MicrotingSdkeFormId,
-                Status = Status,
-                MicrotingSdkCaseId = MicrotingSdkCaseId,
-                ItemId = ItemId,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
-                Version = 1,
-                WorkflowState = Constants.WorkflowStates.Created
-            };
+            CreatedAt = DateTime.UtcNow;
+            UpdatedAt = DateTime.UtcNow;
+            Version = 1;
+            WorkflowState = Constants.WorkflowStates.Created;
 
-            await dbContext.ItemCases.AddAsync(itemCase);
+            await dbContext.ItemCases.AddAsync(this);
             await dbContext.SaveChangesAsync();
 
-            await dbContext.ItemCaseVersions.AddAsync(MapItemCaseVersion(itemCase));
+            await dbContext.ItemCaseVersions.AddAsync(MapVersion(this));
             await dbContext.SaveChangesAsync();
 
-            Id = itemCase.Id;
         }
 
         public async Task Update(ItemsPlanningPnDbContext dbContext)
@@ -83,6 +76,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemCase.Status = Status;
             itemCase.MicrotingSdkCaseId = MicrotingSdkCaseId;
             itemCase.ItemId = ItemId;
+            itemCase.MicrotingSdkCaseDoneAt = MicrotingSdkCaseDoneAt;
             itemCase.WorkflowState = WorkflowState;
 
             if (dbContext.ChangeTracker.HasChanges())
@@ -90,7 +84,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 itemCase.UpdatedAt = DateTime.UtcNow;
                 itemCase.Version += 1;
 
-                await dbContext.ItemCaseVersions.AddAsync(MapItemCaseVersion(itemCase));
+                await dbContext.ItemCaseVersions.AddAsync(MapVersion(itemCase));
                 await dbContext.SaveChangesAsync();
             }
         }
@@ -111,12 +105,12 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 itemCase.UpdatedAt = DateTime.UtcNow;
                 itemCase.Version += 1;
 
-                await dbContext.ItemCaseVersions.AddAsync(MapItemCaseVersion(itemCase));
+                await dbContext.ItemCaseVersions.AddAsync(MapVersion(itemCase));
                 await dbContext.SaveChangesAsync();
             }
         }
 
-        private ItemCaseVersion MapItemCaseVersion(ItemCase item)
+        private ItemCaseVersion MapVersion(ItemCase item)
         {
             ItemCaseVersion itemCaseVersion = new ItemCaseVersion
             {
@@ -125,10 +119,13 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 Status = item.Status,
                 MicrotingSdkCaseId = item.MicrotingSdkCaseId,
                 ItemId = item.ItemId,
+                MicrotingSdkCaseDoneAt = item.MicrotingSdkCaseDoneAt,
                 ItemCaseId = item.Id,
                 Version = item.Version,
                 CreatedAt = item.CreatedAt,
+                CreatedByUserId = item.CreatedByUserId,
                 UpdatedAt = item.UpdatedAt,
+                UpdatedByUserId = item.UpdatedByUserId,
                 WorkflowState = item.WorkflowState
             };
 

@@ -50,7 +50,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
         public virtual ICollection<Item> Items { get; set; } = new HashSet<Item>();
         
-        public async Task Save(ItemsPlanningPnDbContext dbContext)
+        public async Task Create(ItemsPlanningPnDbContext dbContext)
         {
             ItemList itemList = new ItemList
             {

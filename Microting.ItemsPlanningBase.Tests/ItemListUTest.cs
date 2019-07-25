@@ -60,7 +60,7 @@ namespace Microting.ItemsPlanningBase.Tests
             };
 
             // Act
-            await itemList.Save(DbContext);
+            await itemList.Create(DbContext);
 
             List<ItemList> itemLists = DbContext.ItemLists
                 .AsNoTracking()
@@ -124,7 +124,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 WorkflowState = Constants.WorkflowStates.Created,
                 
             };
-            await itemList.Save(DbContext);
+            await itemList.Create(DbContext);
 
             // Act
             itemList = await DbContext.ItemLists.AsNoTracking().FirstOrDefaultAsync();
@@ -208,7 +208,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 WorkflowState = Constants.WorkflowStates.Created,
                 DayOfWeek = DayOfWeek.Friday,
             };
-            await itemList.Save(DbContext);
+            await itemList.Create(DbContext);
 
             // Act
             itemList = await DbContext.ItemLists.AsNoTracking().FirstOrDefaultAsync();

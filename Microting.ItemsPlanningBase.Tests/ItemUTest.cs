@@ -44,7 +44,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString()
             };
 
-            await itemList.Save(DbContext);
+            await itemList.Create(DbContext);
             
             Item item = new Item
             {
@@ -111,7 +111,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString()
             };
 
-            await itemList.Save(DbContext);
+            await itemList.Create(DbContext);
             
             Item item = new Item
             {
@@ -199,7 +199,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString()
             };
 
-            await itemList.Save(DbContext);
+            await itemList.Create(DbContext);
             
             Item item = new Item
             {
