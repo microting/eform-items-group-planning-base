@@ -39,6 +39,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public int MicrotingSdkeFormId { get; set; }
 
         public int Status { get; set; }
+        
+        public string FieldStatus { get; set; }
 
         public int MicrotingSdkCaseId { get; set; }
         
@@ -80,6 +82,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemCase.MicrotingSdkSiteId = MicrotingSdkSiteId;
             itemCase.MicrotingSdkeFormId = MicrotingSdkeFormId;
             itemCase.Status = Status;
+            itemCase.FieldStatus = FieldStatus;
             itemCase.MicrotingSdkCaseId = MicrotingSdkCaseId;
             itemCase.ItemId = ItemId;
             itemCase.MicrotingSdkCaseDoneAt = MicrotingSdkCaseDoneAt;
@@ -126,6 +129,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 MicrotingSdkSiteId = item.MicrotingSdkSiteId,
                 MicrotingSdkeFormId = item.MicrotingSdkeFormId,
                 Status = item.Status,
+                FieldStatus = item.FieldStatus,
                 MicrotingSdkCaseId = item.MicrotingSdkCaseId,
                 ItemId = item.ItemId,
                 MicrotingSdkCaseDoneAt = item.MicrotingSdkCaseDoneAt,
