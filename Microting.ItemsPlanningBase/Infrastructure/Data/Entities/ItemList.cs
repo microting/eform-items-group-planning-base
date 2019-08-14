@@ -86,6 +86,14 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         
         public bool SdkFieldEnabled10 { get; set; }
         
+        public bool ItemNumberEnabled { get; set; }
+        
+        public bool LocationCodeEnabled { get; set; }
+        
+        public bool BuildYearEnabled { get; set; }
+        
+        public bool TypeEnabled { get; set; }
+        
         public int? SdkFieldId1 { get; set; }
 
         public int? SdkFieldId2 { get; set; }
@@ -158,6 +166,10 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemList.SdkFieldEnabled8 = SdkFieldEnabled8;
             itemList.SdkFieldEnabled9 = SdkFieldEnabled9;
             itemList.SdkFieldEnabled10 = SdkFieldEnabled10;
+            itemList.ItemNumberEnabled = ItemNumberEnabled;
+            itemList.LocationCodeEnabled = LocationCodeEnabled;
+            itemList.BuildYearEnabled = BuildYearEnabled;
+            itemList.TypeEnabled = TypeEnabled;
             itemList.SdkFieldId1 = SdkFieldId1;
             itemList.SdkFieldId2 = SdkFieldId2;
             itemList.SdkFieldId3 = SdkFieldId3;
@@ -238,6 +250,10 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 SdkFieldEnabled8 = itemList.SdkFieldEnabled8,
                 SdkFieldEnabled9 = itemList.SdkFieldEnabled9,
                 SdkFieldEnabled10 = itemList.SdkFieldEnabled10,
+                ItemNumberEnabled = itemList.ItemNumberEnabled,
+                LocationCodeEnabled = itemList.LocationCodeEnabled,
+                BuildYearEnabled = itemList.BuildYearEnabled,
+                TypeEnabled = itemList.TypeEnabled,
                 SdkFieldId1 = itemList.SdkFieldId1,
                 SdkFieldId2 = itemList.SdkFieldId2,
                 SdkFieldId3 = itemList.SdkFieldId3,

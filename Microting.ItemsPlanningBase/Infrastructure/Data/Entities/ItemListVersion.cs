@@ -86,6 +86,14 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         
         public bool SdkFieldEnabled10 { get; set; }
         
+        public bool ItemNumberEnabled { get; set; }
+        
+        public bool LocationCodeEnabled { get; set; }
+        
+        public bool BuildYearEnabled { get; set; }
+        
+        public bool TypeEnabled { get; set; }
+        
         public int? SdkFieldId1 { get; set; }
 
         public int? SdkFieldId2 { get; set; }
