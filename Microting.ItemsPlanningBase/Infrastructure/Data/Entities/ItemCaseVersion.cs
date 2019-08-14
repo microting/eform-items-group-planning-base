@@ -72,5 +72,9 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public string SdkFieldValue9 { get; set; }
         
         public string SdkFieldValue10 { get; set; }
+        
+        public int DoneByUserId { get; set; }
+        
+        public string DoneByUserName { get; set; }
     }
 }

@@ -74,6 +74,10 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public string SdkFieldValue9 { get; set; }
         
         public string SdkFieldValue10 { get; set; }
+        
+        public int DoneByUserId { get; set; }
+        
+        public string DoneByUserName { get; set; }
 
         public async Task Create(ItemsPlanningPnDbContext dbContext)
         {
@@ -120,6 +124,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemCase.SdkFieldValue8 = SdkFieldValue8;
             itemCase.SdkFieldValue9 = SdkFieldValue9;
             itemCase.SdkFieldValue10 = SdkFieldValue10;
+            itemCase.DoneByUserId = DoneByUserId;
+            itemCase.DoneByUserName = DoneByUserName;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
@@ -182,7 +188,9 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 SdkFieldValue7 = item.SdkFieldValue7,
                 SdkFieldValue8 = item.SdkFieldValue8,
                 SdkFieldValue9 = item.SdkFieldValue9,
-                SdkFieldValue10 = item.SdkFieldValue10
+                SdkFieldValue10 = item.SdkFieldValue10,
+                DoneByUserId = item.DoneByUserId,
+                DoneByUserName = item.DoneByUserName
             };
 
             return itemCaseVersion;
