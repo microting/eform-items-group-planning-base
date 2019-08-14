@@ -52,5 +52,25 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
         [ForeignKey("ItemCase")]
         public int ItemCaseId { get; set; }
+        
+        public string SdkFieldValue1 { get; set; }
+        
+        public string SdkFieldValue2 { get; set; }
+        
+        public string SdkFieldValue3 { get; set; }
+        
+        public string SdkFieldValue4 { get; set; }
+        
+        public string SdkFieldValue5 { get; set; }
+        
+        public string SdkFieldValue6 { get; set; }
+        
+        public string SdkFieldValue7 { get; set; }
+        
+        public string SdkFieldValue8 { get; set; }
+        
+        public string SdkFieldValue9 { get; set; }
+        
+        public string SdkFieldValue10 { get; set; }
     }
 }
