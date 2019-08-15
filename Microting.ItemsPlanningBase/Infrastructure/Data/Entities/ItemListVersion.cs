@@ -94,6 +94,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         
         public bool TypeEnabled { get; set; }
         
+        public bool NumberOfImagesEnabled { get; set; }
+        
         public int? SdkFieldId1 { get; set; }
 
         public int? SdkFieldId2 { get; set; }

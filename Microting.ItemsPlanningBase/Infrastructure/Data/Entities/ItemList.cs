@@ -92,6 +92,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         
         public bool BuildYearEnabled { get; set; }
         
+        public bool NumberOfImagesEnabled { get; set; }
+        
         public bool TypeEnabled { get; set; }
         
         public int? SdkFieldId1 { get; set; }
@@ -180,6 +182,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemList.SdkFieldId8 = SdkFieldId8;
             itemList.SdkFieldId9 = SdkFieldId9;
             itemList.SdkFieldId10 = SdkFieldId10;
+            itemList.NumberOfImagesEnabled = NumberOfImagesEnabled;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
@@ -253,6 +256,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 ItemNumberEnabled = itemList.ItemNumberEnabled,
                 LocationCodeEnabled = itemList.LocationCodeEnabled,
                 BuildYearEnabled = itemList.BuildYearEnabled,
+                NumberOfImagesEnabled = itemList.NumberOfImagesEnabled,
                 TypeEnabled = itemList.TypeEnabled,
                 SdkFieldId1 = itemList.SdkFieldId1,
                 SdkFieldId2 = itemList.SdkFieldId2,
