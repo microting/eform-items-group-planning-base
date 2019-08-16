@@ -56,6 +56,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         [ForeignKey("ItemList")]
         public int ItemListId { get; set; }
         
+        public bool DeployedAtEnabled { get; set; }
+        
         public bool DoneAtEnabled { get; set; }
         
         public bool DoneByUserNameEnabled { get; set; }

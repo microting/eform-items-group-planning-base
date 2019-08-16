@@ -56,6 +56,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         
         public string RelatedEFormName { get; set; }
         
+        public bool DeployedAtEnabled { get; set; }
+        
         public bool DoneAtEnabled { get; set; }
         
         public bool DoneByUserNameEnabled { get; set; }
@@ -154,6 +156,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemList.UpdatedByUserId = UpdatedByUserId;
             itemList.LastExecutedTime = LastExecutedTime;
             itemList.DoneAtEnabled = DoneAtEnabled;
+            itemList.DeployedAtEnabled = DeployedAtEnabled;
             itemList.DoneByUserNameEnabled = DoneByUserNameEnabled;
             itemList.UploadedDataEnabled = UploadedDataEnabled;
             itemList.LabelEnabled = LabelEnabled;
@@ -239,6 +242,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 CreatedByUserId = itemList.CreatedByUserId,
                 LastExecutedTime = itemList.LastExecutedTime,
                 DoneAtEnabled = itemList.DoneAtEnabled,
+                DeployedAtEnabled = itemList.DeployedAtEnabled,
                 DoneByUserNameEnabled = itemList.DoneByUserNameEnabled,
                 UploadedDataEnabled = itemList.UploadedDataEnabled,
                 LabelEnabled = itemList.LabelEnabled,
