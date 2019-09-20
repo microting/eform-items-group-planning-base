@@ -43,6 +43,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data
         public DbSet<ItemListVersion> ItemListVersions { get; set; }
         public DbSet<ItemCase> ItemCases { get; set; }
         public DbSet<ItemCaseVersion> ItemCaseVersions { get; set; }
+        public DbSet<ItemCaseSite> ItemCaseSites { get; set; }
+        public DbSet<ItemCaseSiteVersion> ItemCaseSiteVersions { get; set; }
         public DbSet<UploadedData> UploadedDatas { get; set; }
         public DbSet<UploadedDataVersion> UploadedDataVersions { get; set; }
         
