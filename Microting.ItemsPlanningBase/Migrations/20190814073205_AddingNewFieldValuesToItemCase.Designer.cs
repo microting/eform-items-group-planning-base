@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microting.ItemsPlanningBase.Infrastructure.Data;
 
 namespace Microting.ItemsPlanningBase.Migrations
 {
     [DbContext(typeof(ItemsPlanningPnDbContext))]
-    partial class ItemsPlanningPnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190814073205_AddingNewFieldValuesToItemCase")]
+    partial class AddingNewFieldValuesToItemCase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             string autoIDGenStrategy = "SqlServer:ValueGenerationStrategy";
@@ -82,10 +84,6 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<int>("CreatedByUserId");
 
-                    b.Property<int>("DoneByUserId");
-
-                    b.Property<string>("DoneByUserName");
-
                     b.Property<string>("FieldStatus");
 
                     b.Property<int>("ItemId");
@@ -138,148 +136,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.ToTable("ItemCases");
                 });
 
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.ItemCaseSite", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
-
-                    b.Property<string>("Comment");
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<int>("CreatedByUserId");
-
-                    b.Property<int>("DoneByUserId");
-
-                    b.Property<string>("DoneByUserName");
-
-                    b.Property<string>("FieldStatus");
-
-                    b.Property<int>("ItemCaseId");
-
-                    b.Property<int>("ItemId");
-
-                    b.Property<string>("Location");
-
-                    b.Property<DateTime?>("MicrotingSdkCaseDoneAt");
-
-                    b.Property<int>("MicrotingSdkCaseId");
-
-                    b.Property<int>("MicrotingSdkSiteId");
-
-                    b.Property<int>("MicrotingSdkeFormId");
-
-                    b.Property<int>("NumberOfImages");
-
-                    b.Property<string>("SdkFieldValue1");
-
-                    b.Property<string>("SdkFieldValue10");
-
-                    b.Property<string>("SdkFieldValue2");
-
-                    b.Property<string>("SdkFieldValue3");
-
-                    b.Property<string>("SdkFieldValue4");
-
-                    b.Property<string>("SdkFieldValue5");
-
-                    b.Property<string>("SdkFieldValue6");
-
-                    b.Property<string>("SdkFieldValue7");
-
-                    b.Property<string>("SdkFieldValue8");
-
-                    b.Property<string>("SdkFieldValue9");
-
-                    b.Property<int>("Status");
-
-                    b.Property<DateTime?>("UpdatedAt");
-
-                    b.Property<int>("UpdatedByUserId");
-
-                    b.Property<int>("Version");
-
-                    b.Property<string>("WorkflowState")
-                        .HasMaxLength(255);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ItemCaseSites");
-                });
-
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.ItemCaseSiteVersion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
-
-                    b.Property<string>("Comment");
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<int>("CreatedByUserId");
-
-                    b.Property<int>("DoneByUserId");
-
-                    b.Property<string>("DoneByUserName");
-
-                    b.Property<string>("FieldStatus");
-
-                    b.Property<int>("ItemCaseId");
-
-                    b.Property<int>("ItemCaseSiteId");
-
-                    b.Property<int>("ItemId");
-
-                    b.Property<string>("Location");
-
-                    b.Property<DateTime?>("MicrotingSdkCaseDoneAt");
-
-                    b.Property<int>("MicrotingSdkCaseId");
-
-                    b.Property<int>("MicrotingSdkSiteId");
-
-                    b.Property<int>("MicrotingSdkeFormId");
-
-                    b.Property<int>("NumberOfImages");
-
-                    b.Property<string>("SdkFieldValue1");
-
-                    b.Property<string>("SdkFieldValue10");
-
-                    b.Property<string>("SdkFieldValue2");
-
-                    b.Property<string>("SdkFieldValue3");
-
-                    b.Property<string>("SdkFieldValue4");
-
-                    b.Property<string>("SdkFieldValue5");
-
-                    b.Property<string>("SdkFieldValue6");
-
-                    b.Property<string>("SdkFieldValue7");
-
-                    b.Property<string>("SdkFieldValue8");
-
-                    b.Property<string>("SdkFieldValue9");
-
-                    b.Property<int>("Status");
-
-                    b.Property<DateTime?>("UpdatedAt");
-
-                    b.Property<int>("UpdatedByUserId");
-
-                    b.Property<int>("Version");
-
-                    b.Property<string>("WorkflowState")
-                        .HasMaxLength(255);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ItemCaseSiteVersions");
-                });
-
             modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.ItemCaseVersion", b =>
                 {
                     b.Property<int>("Id")
@@ -291,10 +147,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<DateTime>("CreatedAt");
 
                     b.Property<int>("CreatedByUserId");
-
-                    b.Property<int>("DoneByUserId");
-
-                    b.Property<string>("DoneByUserName");
 
                     b.Property<string>("FieldStatus");
 
@@ -356,8 +208,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
-                    b.Property<bool>("BuildYearEnabled");
-
                     b.Property<DateTime>("CreatedAt");
 
                     b.Property<int>("CreatedByUserId");
@@ -365,8 +215,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<int?>("DayOfMonth");
 
                     b.Property<int?>("DayOfWeek");
-
-                    b.Property<bool>("DeployedAtEnabled");
 
                     b.Property<string>("Description");
 
@@ -378,17 +226,11 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<bool>("Enabled");
 
-                    b.Property<bool>("ItemNumberEnabled");
-
                     b.Property<bool>("LabelEnabled");
 
                     b.Property<DateTime?>("LastExecutedTime");
 
-                    b.Property<bool>("LocationCodeEnabled");
-
                     b.Property<string>("Name");
-
-                    b.Property<bool>("NumberOfImagesEnabled");
 
                     b.Property<int>("RelatedEFormId");
 
@@ -439,8 +281,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<int?>("SdkFieldId8");
 
                     b.Property<int?>("SdkFieldId9");
-
-                    b.Property<bool>("TypeEnabled");
 
                     b.Property<DateTime?>("UpdatedAt");
 
@@ -464,8 +304,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
-                    b.Property<bool>("BuildYearEnabled");
-
                     b.Property<DateTime>("CreatedAt");
 
                     b.Property<int>("CreatedByUserId");
@@ -473,8 +311,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<int?>("DayOfMonth");
 
                     b.Property<int?>("DayOfWeek");
-
-                    b.Property<bool>("DeployedAtEnabled");
 
                     b.Property<string>("Description");
 
@@ -488,17 +324,11 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<int>("ItemListId");
 
-                    b.Property<bool>("ItemNumberEnabled");
-
                     b.Property<bool>("LabelEnabled");
 
                     b.Property<DateTime?>("LastExecutedTime");
 
-                    b.Property<bool>("LocationCodeEnabled");
-
                     b.Property<string>("Name");
-
-                    b.Property<bool>("NumberOfImagesEnabled");
 
                     b.Property<int>("RelatedEFormId");
 
@@ -549,8 +379,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<int?>("SdkFieldId8");
 
                     b.Property<int?>("SdkFieldId9");
-
-                    b.Property<bool>("TypeEnabled");
 
                     b.Property<DateTime?>("UpdatedAt");
 
@@ -758,77 +586,11 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.ToTable("PluginConfigurationValueVersions");
                 });
 
-            modelBuilder.Entity("Microting.eFormApi.BasePn.Infrastructure.Database.Entities.PluginGroupPermission", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<int>("CreatedByUserId");
-
-                    b.Property<int>("GroupId");
-
-                    b.Property<int>("PermissionId");
-
-                    b.Property<DateTime?>("UpdatedAt");
-
-                    b.Property<int>("UpdatedByUserId");
-
-                    b.Property<int>("Version");
-
-                    b.Property<string>("WorkflowState")
-                        .HasMaxLength(255);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PermissionId");
-
-                    b.ToTable("PluginGroupPermissions");
-                });
-
-            modelBuilder.Entity("Microting.eFormApi.BasePn.Infrastructure.Database.Entities.PluginPermission", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
-
-                    b.Property<string>("ClaimName");
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<int>("CreatedByUserId");
-
-                    b.Property<string>("PermissionName");
-
-                    b.Property<DateTime?>("UpdatedAt");
-
-                    b.Property<int>("UpdatedByUserId");
-
-                    b.Property<int>("Version");
-
-                    b.Property<string>("WorkflowState")
-                        .HasMaxLength(255);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PluginPermissions");
-                });
-
             modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.Item", b =>
                 {
                     b.HasOne("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.ItemList")
                         .WithMany("Items")
                         .HasForeignKey("ItemListId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microting.eFormApi.BasePn.Infrastructure.Database.Entities.PluginGroupPermission", b =>
-                {
-                    b.HasOne("Microting.eFormApi.BasePn.Infrastructure.Database.Entities.PluginPermission", "Permission")
-                        .WithMany()
-                        .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

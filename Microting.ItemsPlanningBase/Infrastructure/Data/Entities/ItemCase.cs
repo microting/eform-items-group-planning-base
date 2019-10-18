@@ -38,34 +38,59 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public int MicrotingSdkeFormId { get; set; }
 
         public int Status { get; set; }
+        
+        public string FieldStatus { get; set; }
 
         public int MicrotingSdkCaseId { get; set; }
+        
+        public DateTime? MicrotingSdkCaseDoneAt { get; set; }
+        
+        public int NumberOfImages { get; set; }
+        
+        public string Comment { get; set; }
+        
+        public string Location { get; set; }
 
         [ForeignKey("Item")]
         public int ItemId { get; set; }
+        
+        public string SdkFieldValue1 { get; set; }
+        
+        public string SdkFieldValue2 { get; set; }
+        
+        public string SdkFieldValue3 { get; set; }
+        
+        public string SdkFieldValue4 { get; set; }
+        
+        public string SdkFieldValue5 { get; set; }
+        
+        public string SdkFieldValue6 { get; set; }
+        
+        public string SdkFieldValue7 { get; set; }
+        
+        public string SdkFieldValue8 { get; set; }
+        
+        public string SdkFieldValue9 { get; set; }
+        
+        public string SdkFieldValue10 { get; set; }
+        
+        public int DoneByUserId { get; set; }
+        
+        public string DoneByUserName { get; set; }
 
-        public async Task Save(ItemsPlanningPnDbContext dbContext)
+        public async Task Create(ItemsPlanningPnDbContext dbContext)
         {
-            ItemCase itemCase = new ItemCase
-            {
-                MicrotingSdkSiteId = MicrotingSdkSiteId,
-                MicrotingSdkeFormId = MicrotingSdkeFormId,
-                Status = Status,
-                MicrotingSdkCaseId = MicrotingSdkCaseId,
-                ItemId = ItemId,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
-                Version = 1,
-                WorkflowState = Constants.WorkflowStates.Created
-            };
+            CreatedAt = DateTime.UtcNow;
+            UpdatedAt = DateTime.UtcNow;
+            Version = 1;
+            WorkflowState = Constants.WorkflowStates.Created;
 
-            await dbContext.ItemCases.AddAsync(itemCase);
+            await dbContext.ItemCases.AddAsync(this);
             await dbContext.SaveChangesAsync();
 
-            await dbContext.ItemCaseVersions.AddAsync(MapItemCaseVersion(itemCase));
+            await dbContext.ItemCaseVersions.AddAsync(MapVersion(this));
             await dbContext.SaveChangesAsync();
 
-            Id = itemCase.Id;
         }
 
         public async Task Update(ItemsPlanningPnDbContext dbContext)
@@ -80,16 +105,33 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             itemCase.MicrotingSdkSiteId = MicrotingSdkSiteId;
             itemCase.MicrotingSdkeFormId = MicrotingSdkeFormId;
             itemCase.Status = Status;
+            itemCase.FieldStatus = FieldStatus;
             itemCase.MicrotingSdkCaseId = MicrotingSdkCaseId;
             itemCase.ItemId = ItemId;
+            itemCase.MicrotingSdkCaseDoneAt = MicrotingSdkCaseDoneAt;
             itemCase.WorkflowState = WorkflowState;
+            itemCase.NumberOfImages = NumberOfImages;
+            itemCase.Comment = Comment;
+            itemCase.Location = Location;
+            itemCase.SdkFieldValue1 = SdkFieldValue1;
+            itemCase.SdkFieldValue2 = SdkFieldValue2;
+            itemCase.SdkFieldValue3 = SdkFieldValue3;
+            itemCase.SdkFieldValue4 = SdkFieldValue4;
+            itemCase.SdkFieldValue5 = SdkFieldValue5;
+            itemCase.SdkFieldValue6 = SdkFieldValue6;
+            itemCase.SdkFieldValue7 = SdkFieldValue7;
+            itemCase.SdkFieldValue8 = SdkFieldValue8;
+            itemCase.SdkFieldValue9 = SdkFieldValue9;
+            itemCase.SdkFieldValue10 = SdkFieldValue10;
+            itemCase.DoneByUserId = DoneByUserId;
+            itemCase.DoneByUserName = DoneByUserName;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
                 itemCase.UpdatedAt = DateTime.UtcNow;
                 itemCase.Version += 1;
 
-                await dbContext.ItemCaseVersions.AddAsync(MapItemCaseVersion(itemCase));
+                await dbContext.ItemCaseVersions.AddAsync(MapVersion(itemCase));
                 await dbContext.SaveChangesAsync();
             }
         }
@@ -110,25 +152,44 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 itemCase.UpdatedAt = DateTime.UtcNow;
                 itemCase.Version += 1;
 
-                await dbContext.ItemCaseVersions.AddAsync(MapItemCaseVersion(itemCase));
+                await dbContext.ItemCaseVersions.AddAsync(MapVersion(itemCase));
                 await dbContext.SaveChangesAsync();
             }
         }
 
-        private ItemCaseVersion MapItemCaseVersion(ItemCase item)
+        private ItemCaseVersion MapVersion(ItemCase item)
         {
             ItemCaseVersion itemCaseVersion = new ItemCaseVersion
             {
                 MicrotingSdkSiteId = item.MicrotingSdkSiteId,
                 MicrotingSdkeFormId = item.MicrotingSdkeFormId,
                 Status = item.Status,
+                FieldStatus = item.FieldStatus,
                 MicrotingSdkCaseId = item.MicrotingSdkCaseId,
                 ItemId = item.ItemId,
+                MicrotingSdkCaseDoneAt = item.MicrotingSdkCaseDoneAt,
+                NumberOfImages = item.NumberOfImages,
+                Comment = item.Comment,
+                Location = item.Location,
                 ItemCaseId = item.Id,
                 Version = item.Version,
                 CreatedAt = item.CreatedAt,
+                CreatedByUserId = item.CreatedByUserId,
                 UpdatedAt = item.UpdatedAt,
-                WorkflowState = item.WorkflowState
+                UpdatedByUserId = item.UpdatedByUserId,
+                WorkflowState = item.WorkflowState,
+                SdkFieldValue1 = item.SdkFieldValue1,
+                SdkFieldValue2 = item.SdkFieldValue2,
+                SdkFieldValue3 = item.SdkFieldValue3,
+                SdkFieldValue4 = item.SdkFieldValue4,
+                SdkFieldValue5 = item.SdkFieldValue5,
+                SdkFieldValue6 = item.SdkFieldValue6,
+                SdkFieldValue7 = item.SdkFieldValue7,
+                SdkFieldValue8 = item.SdkFieldValue8,
+                SdkFieldValue9 = item.SdkFieldValue9,
+                SdkFieldValue10 = item.SdkFieldValue10,
+                DoneByUserId = item.DoneByUserId,
+                DoneByUserName = item.DoneByUserName
             };
 
             return itemCaseVersion;

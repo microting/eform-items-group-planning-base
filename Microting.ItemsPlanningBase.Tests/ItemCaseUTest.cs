@@ -25,8 +25,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using eFormShared;
 using Microsoft.EntityFrameworkCore;
+using Microting.eForm.Infrastructure.Constants;
 using Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
 using NUnit.Framework;
 
@@ -44,7 +44,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString()
             };
 
-            await itemList.Save(DbContext);
+            await itemList.Create(DbContext);
             
             Item item = new Item
             {
@@ -66,7 +66,7 @@ namespace Microting.ItemsPlanningBase.Tests
             };
 
             // Act
-            await itemCase.Save(DbContext);
+            await itemCase.Create(DbContext);
 
             List<ItemCase> itemCases = DbContext.ItemCases.AsNoTracking().ToList();
             List<ItemCaseVersion> itemCaseVersions = DbContext.ItemCaseVersions.AsNoTracking().ToList();
@@ -102,7 +102,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString()
             };
 
-            await itemList.Save(DbContext);
+            await itemList.Create(DbContext);
             
             Item item = new Item
             {
@@ -123,7 +123,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 ItemId = item.Id
             };
 
-            await itemCase.Save(DbContext);
+            await itemCase.Create(DbContext);
             // Act
             itemCase = await DbContext.ItemCases.AsNoTracking().FirstOrDefaultAsync();
 
@@ -173,7 +173,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 Name = Guid.NewGuid().ToString()
             };
 
-            await itemList.Save(DbContext);
+            await itemList.Create(DbContext);
             
             Item item = new Item
             {
@@ -194,7 +194,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 ItemId = item.Id
             };
 
-            await itemCase.Save(DbContext);
+            await itemCase.Create(DbContext);
             // Act
             itemCase = await DbContext.ItemCases.AsNoTracking().FirstOrDefaultAsync();
 

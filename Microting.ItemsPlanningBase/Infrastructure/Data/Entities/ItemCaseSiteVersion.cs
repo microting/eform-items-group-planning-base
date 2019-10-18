@@ -24,11 +24,13 @@ SOFTWARE.
 
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Threading.Tasks;
+using Microting.eForm.Infrastructure.Constants;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
-    public class ItemCaseVersion : BaseEntity
+    public class ItemCaseSiteVersion : BaseEntity
     {
         public int MicrotingSdkSiteId { get; set; }
         
@@ -50,8 +52,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 
         public int ItemId { get; set; }
 
-        [ForeignKey("ItemCase")]
-        public int ItemCaseId { get; set; }
+        [ForeignKey("ItemCaseSite")]
+        public int ItemCaseSiteId { get; set; }
         
         public string SdkFieldValue1 { get; set; }
         
@@ -76,5 +78,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public int DoneByUserId { get; set; }
         
         public string DoneByUserName { get; set; }
+        
+        public int ItemCaseId { get; set; }
     }
 }

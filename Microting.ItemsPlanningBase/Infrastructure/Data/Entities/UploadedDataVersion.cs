@@ -21,25 +21,36 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
-    public class ItemVersion : BaseEntity
+    public class UploadedDataVersion : BaseEntity
     {
-        public string Sku { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public bool Enabled { get; set; }
-        public string ItemNumber { get; set; }
-        public string LocationCode { get; set; }
-        public string BuildYear { get; set; }
-        public string Type { get; set; }
+        public int ItemCaseId { get; set; }
         
-        public int ItemListId { get; set; }    
-        
-        [ForeignKey("Item")]
-        public int ItemId { get; set; }
+        [StringLength(255)]
+        public string Checksum { get; set; }
+
+        [StringLength(255)]
+        public string Extension { get; set; }
+
+        [StringLength(255)]
+        public string CurrentFile { get; set; }
+
+        [StringLength(255)]
+        public string UploaderType { get; set; }
+
+        [StringLength(255)]
+        public string FileLocation { get; set; }
+
+        [StringLength(255)]
+        public string FileName { get; set; }
+
+        [ForeignKey("UploadedData")]
+        public int UploadedDataId { get; set; }
     }
 }
