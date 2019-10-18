@@ -25,13 +25,12 @@ SOFTWARE.
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
-using eFormShared;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
+using Microsoft.EntityFrameworkCore;
+using Microting.eForm.Infrastructure.Constants;
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
-    using Microsoft.EntityFrameworkCore;
-
     public class ItemCase : BaseEntity
     {
         public int MicrotingSdkSiteId { get; set; }
