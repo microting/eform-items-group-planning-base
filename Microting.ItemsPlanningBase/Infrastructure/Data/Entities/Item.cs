@@ -24,13 +24,12 @@ SOFTWARE.
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
-using Microting.eForm.Infrastructure.Constants;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
+using Microsoft.EntityFrameworkCore;
+using Microting.eForm.Infrastructure.Constants;
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
-    using Microsoft.EntityFrameworkCore;
-
     public class Item : BaseEntity
     {
         public string Sku { get; set; }

@@ -25,12 +25,12 @@ using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microting.ItemsPlanningBase.Infrastructure.Enums;
+using Microsoft.EntityFrameworkCore;
 using Microting.eForm.Infrastructure.Constants;
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
-    using Enums;
-    using Microsoft.EntityFrameworkCore;
 
     public class ItemList : BaseEntity
     {
