@@ -52,5 +52,6 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data
         public DbSet<PluginConfigurationValueVersion> PluginConfigurationValueVersions { get; set; }
         public DbSet<PluginPermission> PluginPermissions { get; set; }
         public DbSet<PluginGroupPermission> PluginGroupPermissions { get; set; }
+        public DbSet<PluginGroupPermissionVersion> PluginGroupPermissionVersions { get; set; }
     }
 }
