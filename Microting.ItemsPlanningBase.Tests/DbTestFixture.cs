@@ -99,6 +99,8 @@ namespace Microting.ItemsPlanningBase.Tests
             modelNames.Add("ItemCaseVersions");
             modelNames.Add("ItemLists");
             modelNames.Add("ItemListVersions");
+            modelNames.Add("UploadedDataVersions");
+            modelNames.Add("UploadedDatas");
             modelNames.Add("PluginConfigurationValues");
             modelNames.Add("PluginConfigurationValueVersions");
 
