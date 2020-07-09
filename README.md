@@ -1,6 +1,6 @@
-# eform-ItemsPlanningBase
+# eform-ItemsGroupPlanningBase
 Build status
-[![Build Status](https://travis-ci.org/microting/eform-ItemsPlanningBase.svg?branch=stable)](https://travis-ci.org/microting/eform-ItemsPlanningBase)
+[![Build Status](https://travis-ci.org/microting/eform-ItemsGroupPlanningBase.svg?branch=stable)](https://travis-ci.org/microting/eform-ItemsGroupPlanningBase)
 
 ## NOTICE! this is not a standalone project and needs to be used with eForm Angular Frontend.
 
@@ -21,9 +21,9 @@ Pull-reuqsts that do not pass tests, will not be accepted.
 
 ### Where to contribute
 
-Check out the [full issues list](https://github.com/microting/eform-ItemsPlanningBase/issues) for a list of all potential areas for contributions.
+Check out the [full issues list](https://github.com/microting/eform-ItemsGroupPlanningBase/issues) for a list of all potential areas for contributions.
 
-To improve the chances to get a pull request merged you should select an issue that is labelled with the [help_wanted](https://github.com/microting/eform-ItemsPlanningBase/issues?q=is%3Aissue+is%3Aopen+label%3Ahelp_wanted) or [bug](https://github.com/microting/eform-ItemsPlanningBase/issues?q=is%3Aissue+is%3Aopen+label%3Abug) labels. If the issue you want to work on is not labelled with `help-wanted` or `bug`, you can start a conversation with the issue owner asking whether an external contribution will be considered.
+To improve the chances to get a pull request merged you should select an issue that is labelled with the [help_wanted](https://github.com/microting/eform-ItemsGroupPlanningBase/issues?q=is%3Aissue+is%3Aopen+label%3Ahelp_wanted) or [bug](https://github.com/microting/eform-ItemsGroupPlanningBase/issues?q=is%3Aissue+is%3Aopen+label%3Abug) labels. If the issue you want to work on is not labelled with `help-wanted` or `bug`, you can start a conversation with the issue owner asking whether an external contribution will be considered.
 	
 ### Suggestions
 
