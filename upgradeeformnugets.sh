@@ -4,8 +4,8 @@ GIT_STATUS=`git status | grep "nothing to commit, working tree clean" | wc -l`
 if (( "$GIT_STATUS" > 0 )); then
 	git pull
 
-	dotnet add Microting.ItemsPlanningBase/Microting.ItemsPlanningBase.csproj package Microting.eForm
-	dotnet add Microting.ItemsPlanningBase/Microting.ItemsPlanningBase.csproj package Microting.eFormApi.BasePn
+	dotnet add Microting.ItemsGroupPlanningBase/Microting.ItemsGroupPlanningBase.csproj package Microting.eForm
+	dotnet add Microting.ItemsGroupPlanningBase/Microting.ItemsGroupPlanningBase.csproj package Microting.eFormApi.BasePn
 
 	EFORM_VERSION=`dotnet list package | grep 'Microting.eForm ' | cut -c54-60`
 	EFORM_BASEPN_VERSION=`dotnet list package | grep 'Microting.eFormApi.BasePn' | cut -c54-60`
@@ -26,7 +26,7 @@ if (( "$GIT_STATUS" > 0 )); then
 		NEW_GIT_VERSION="v$MAJOR_VERSION.$MINOR_VERSION.$BUILD_VERSION"
 		git tag "$NEW_GIT_VERSION"
 		git push --tags
-		git push	
+		git push
 		echo "Updated Microting eForm to ${EFORM_VERSION} and pushed new version ${NEW_GIT_VERSION}"
 	fi
 else
