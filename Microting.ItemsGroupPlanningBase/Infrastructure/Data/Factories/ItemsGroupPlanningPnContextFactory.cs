@@ -33,30 +33,12 @@ namespace Microting.ItemsGroupPlanningBase.Infrastructure.Data.Factories
     {
         public ItemsGroupPlanningPnDbContext CreateDbContext(string[] args)
         {
-            //args = new[]
-            //    {"host=localhost;Database=group-items-pl;Uid=root;Pwd=111111;port=3306;Convert Zero Datetime = true;SslMode=none;PersistSecurityInfo=true;"};
-            //args = new[]
-            //    {"Data Source=.\\SQLEXPRESS;Database=group-items-pl;Integrated Security=True"};
+            var defaultCs = "Server = localhost; port = 3306; Database = items-group-planning-db; user = root; Convert Zero Datetime = true;";
             var optionsBuilder = new DbContextOptionsBuilder<ItemsGroupPlanningPnDbContext>();
-            if (args.Any())
-            {
-                if (args.FirstOrDefault().ToLower().Contains("convert zero datetime"))
-                {
-                    optionsBuilder.UseMySql(args.FirstOrDefault());
-                }
-                else
-                {
-                    optionsBuilder.UseSqlServer(args.FirstOrDefault());
-                }
-            }
-            else
-            {
-                throw new ArgumentNullException("Connection string not present");
-            }
-//            optionsBuilder.UseSqlServer(@"data source=(LocalDb)\SharedInstance;Initial catalog=trash-inspection-pn-tests;Integrated Security=True");
-//            dotnet ef migrations add InitialCreate --project Microting.ItemsPlanningBase --startup-project DBMigrator
+            optionsBuilder.UseMySql(args.Any() ? args[0]: defaultCs);
             optionsBuilder.UseLazyLoadingProxies(true);
             return new ItemsGroupPlanningPnDbContext(optionsBuilder.Options);
+            // dotnet ef migrations add InitialCreate --project Microting.ItemsPlanningBase --startup-project DBMigrator
         }
     }
 }
