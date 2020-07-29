@@ -22,6 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+
 namespace Microting.ItemsGroupPlanningBase.Infrastructure.Data.Factories
 {
     using System;
@@ -35,8 +37,10 @@ namespace Microting.ItemsGroupPlanningBase.Infrastructure.Data.Factories
         {
             var defaultCs = "Server = localhost; port = 3306; Database = items-group-planning-db; user = root; Convert Zero Datetime = true;";
             var optionsBuilder = new DbContextOptionsBuilder<ItemsGroupPlanningPnDbContext>();
-            optionsBuilder.UseMySql(args.Any() ? args[0]: defaultCs);
-            optionsBuilder.UseLazyLoadingProxies(true);
+            optionsBuilder.UseMySql(args.Any() ? args[0] : defaultCs, mysqlOptions =>
+            {
+                mysqlOptions.ServerVersion(new Version(10, 4, 0), ServerType.MariaDb);
+            });            optionsBuilder.UseLazyLoadingProxies(true);
             return new ItemsGroupPlanningPnDbContext(optionsBuilder.Options);
             // dotnet ef migrations add InitialCreate --project Microting.ItemsPlanningBase --startup-project DBMigrator
         }
