@@ -35,7 +35,7 @@ namespace Microting.ItemsGroupPlanningBase.Infrastructure.Data.Factories
     {
         public ItemsGroupPlanningPnDbContext CreateDbContext(string[] args)
         {
-            var defaultCs = "Server = localhost; port = 3306; Database = items-group-planning-db; user = root; Convert Zero Datetime = true;";
+            var defaultCs = "Server = localhost; port = 3306; Database = items-group-planning-db; user = root; password = secretpassword; Convert Zero Datetime = true;";
             var optionsBuilder = new DbContextOptionsBuilder<ItemsGroupPlanningPnDbContext>();
             optionsBuilder.UseMySql(args.Any() ? args[0] : defaultCs, mysqlOptions =>
             {
