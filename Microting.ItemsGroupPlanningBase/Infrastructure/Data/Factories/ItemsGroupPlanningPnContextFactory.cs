@@ -39,8 +39,8 @@ namespace Microting.ItemsGroupPlanningBase.Infrastructure.Data.Factories
             var optionsBuilder = new DbContextOptionsBuilder<ItemsGroupPlanningPnDbContext>();
             optionsBuilder.UseMySql(args.Any() ? args[0] : defaultCs, mysqlOptions =>
             {
-                mysqlOptions.ServerVersion(new Version(10, 4, 0), ServerType.MariaDb);
-            });            optionsBuilder.UseLazyLoadingProxies(true);
+                mysqlOptions.ServerVersion(new Version(10, 4, 0), ServerType.MariaDb).EnableRetryOnFailure();
+            });
             return new ItemsGroupPlanningPnDbContext(optionsBuilder.Options);
             // dotnet ef migrations add InitialCreate --project Microting.ItemsPlanningBase --startup-project DBMigrator
         }
