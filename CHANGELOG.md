@@ -1,5 +1,18 @@
 # Changelog
 
+## [v2.0.82](https://github.com/microting/eform-items-group-planning-base/tree/v2.0.82) (2021-03-25)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v2.0.81...v2.0.82)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 2.0.98 to 2.0.106 [\#49](https://github.com/microting/eform-items-group-planning-base/issues/49)
+- Bump Microting.eForm from 4.4.2 to 4.4.11 [\#48](https://github.com/microting/eform-items-group-planning-base/issues/48)
+
+**Merged pull requests:**
+
+- Bump Microsoft.NET.Test.Sdk from 16.8.3 to 16.9.1 [\#31](https://github.com/microting/eform-items-group-planning-base/pull/31) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+
 ## [v2.0.81](https://github.com/microting/eform-items-group-planning-base/tree/v2.0.81) (2021-02-24)
 
 [Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v2.0.80...v2.0.81)
