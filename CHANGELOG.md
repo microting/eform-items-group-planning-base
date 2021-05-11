@@ -1,5 +1,14 @@
 # Changelog
 
+## [v3.0.8](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.8) (2021-05-11)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.7...v3.0.8)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.8 to 3.0.9 [\#119](https://github.com/microting/eform-items-group-planning-base/issues/119)
+- Bump Microting.eForm from 5.1.4 to 5.1.5 [\#118](https://github.com/microting/eform-items-group-planning-base/issues/118)
+
 ## [v3.0.7](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.7) (2021-05-07)
 
 [Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.6...v3.0.7)
@@ -157,6 +166,7 @@
 
 **Implemented enhancements:**
 
+- Bump Microting.eFormApi.BasePn from 2.0.118 to 2.0.120 [\#76](https://github.com/microting/eform-items-group-planning-base/issues/76)
 - Bump Microting.eForm from 4.4.27 to 4.4.29 [\#75](https://github.com/microting/eform-items-group-planning-base/issues/75)
 
 ## [v2.0.92](https://github.com/microting/eform-items-group-planning-base/tree/v2.0.92) (2021-04-12)
@@ -165,7 +175,6 @@
 
 **Implemented enhancements:**
 
-- Bump Microting.eFormApi.BasePn from 2.0.118 to 2.0.120 [\#76](https://github.com/microting/eform-items-group-planning-base/issues/76)
 - Bump Microting.eFormApi.BasePn from 2.0.117 to 2.0.118 [\#74](https://github.com/microting/eform-items-group-planning-base/issues/74)
 - Bump Microting.eForm from 4.4.26 to 4.4.27 [\#73](https://github.com/microting/eform-items-group-planning-base/issues/73)
 
@@ -383,6 +392,7 @@
 **Merged pull requests:**
 
 - Bump Microsoft.NET.Test.Sdk from 16.6.1 to 16.8.3 [\#14](https://github.com/microting/eform-items-group-planning-base/pull/14) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Fix tests [\#5](https://github.com/microting/eform-items-group-planning-base/pull/5) ([emleonid](https://github.com/emleonid))
 
 ## [v2.0.54](https://github.com/microting/eform-items-group-planning-base/tree/v2.0.54) (2021-01-06)
 
@@ -949,7 +959,6 @@
 
 - Updates [\#7](https://github.com/microting/eform-items-group-planning-base/pull/7) ([emleonid](https://github.com/emleonid))
 - Added day of the month field [\#6](https://github.com/microting/eform-items-group-planning-base/pull/6) ([emleonid](https://github.com/emleonid))
-- Fix tests [\#5](https://github.com/microting/eform-items-group-planning-base/pull/5) ([emleonid](https://github.com/emleonid))
 - Fix template id [\#4](https://github.com/microting/eform-items-group-planning-base/pull/4) ([emleonid](https://github.com/emleonid))
 - Items updates [\#3](https://github.com/microting/eform-items-group-planning-base/pull/3) ([emleonid](https://github.com/emleonid))
 - Updates [\#2](https://github.com/microting/eform-items-group-planning-base/pull/2) ([Gid733](https://github.com/Gid733))
