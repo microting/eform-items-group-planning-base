@@ -1,5 +1,14 @@
 # Changelog
 
+## [v3.0.9](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.9) (2021-05-13)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.8...v3.0.9)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.9 to 3.0.10 [\#122](https://github.com/microting/eform-items-group-planning-base/issues/122)
+- Bump Microting.eForm from 5.1.5 to 5.2.0 [\#121](https://github.com/microting/eform-items-group-planning-base/issues/121)
+
 ## [v3.0.8](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.8) (2021-05-11)
 
 [Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.7...v3.0.8)
@@ -392,7 +401,6 @@
 **Merged pull requests:**
 
 - Bump Microsoft.NET.Test.Sdk from 16.6.1 to 16.8.3 [\#14](https://github.com/microting/eform-items-group-planning-base/pull/14) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
-- Fix tests [\#5](https://github.com/microting/eform-items-group-planning-base/pull/5) ([emleonid](https://github.com/emleonid))
 
 ## [v2.0.54](https://github.com/microting/eform-items-group-planning-base/tree/v2.0.54) (2021-01-06)
 
@@ -959,6 +967,7 @@
 
 - Updates [\#7](https://github.com/microting/eform-items-group-planning-base/pull/7) ([emleonid](https://github.com/emleonid))
 - Added day of the month field [\#6](https://github.com/microting/eform-items-group-planning-base/pull/6) ([emleonid](https://github.com/emleonid))
+- Fix tests [\#5](https://github.com/microting/eform-items-group-planning-base/pull/5) ([emleonid](https://github.com/emleonid))
 - Fix template id [\#4](https://github.com/microting/eform-items-group-planning-base/pull/4) ([emleonid](https://github.com/emleonid))
 - Items updates [\#3](https://github.com/microting/eform-items-group-planning-base/pull/3) ([emleonid](https://github.com/emleonid))
 - Updates [\#2](https://github.com/microting/eform-items-group-planning-base/pull/2) ([Gid733](https://github.com/Gid733))
