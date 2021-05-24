@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2007 - 2019 Microting A/S
+Copyright (c) 2007 - 2021 Microting A/S
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -63,7 +63,7 @@ namespace Microting.ItemsGroupPlanningBase.Tests
             };
 
             // Act
-            await item.Save(DbContext);
+            await item.Create(DbContext);
 
             List<Item> items = DbContext.Items.AsNoTracking().ToList();
             List<ItemVersion> itemVersions = DbContext.ItemVersions.AsNoTracking().ToList();
@@ -122,16 +122,14 @@ namespace Microting.ItemsGroupPlanningBase.Tests
                 ItemListId = itemList.Id,
                 UpdatedByUserId = 1,
                 CreatedByUserId = 1,
-                Version = 1,
-                WorkflowState = Constants.WorkflowStates.Created,
                 ItemNumber = "1",
                 LocationCode = "2",
                 Sku = "3",
             };
-            await item.Save(DbContext);
+            await item.Create(DbContext);
 
             // Act
-            item = await DbContext.Items.AsNoTracking().FirstOrDefaultAsync();
+            item = await DbContext.Items.FirstOrDefaultAsync();
 
             string oldName = item.Name;
             item.Name = "hello";
@@ -165,7 +163,7 @@ namespace Microting.ItemsGroupPlanningBase.Tests
 
             Assert.AreEqual(item.UpdatedByUserId, itemVersions[0].UpdatedByUserId);
             Assert.AreEqual(item.CreatedByUserId, itemVersions[0].CreatedByUserId);
-            Assert.AreEqual(item.Version, itemVersions[0].Version);
+            Assert.AreEqual(item.Version, itemVersions[1].Version);
             Assert.AreEqual(item.WorkflowState, itemVersions[0].WorkflowState);
             Assert.AreEqual(item.ItemNumber, itemVersions[0].ItemNumber);
             Assert.AreEqual(item.LocationCode, itemVersions[0].LocationCode);
@@ -188,7 +186,6 @@ namespace Microting.ItemsGroupPlanningBase.Tests
 
             Assert.AreEqual(Constants.WorkflowStates.Created, itemVersions[1].WorkflowState);
             Assert.AreEqual(item.Id, itemVersions[1].ItemId);
-            Assert.AreEqual(2, itemVersions[1].Version);
         }
 
         [Test]
@@ -216,7 +213,7 @@ namespace Microting.ItemsGroupPlanningBase.Tests
                 LocationCode = "2",
                 Sku = "3",
             };
-            await item.Save(DbContext);
+            await item.Create(DbContext);
 
             // Act
             item = await DbContext.Items.FirstOrDefaultAsync();

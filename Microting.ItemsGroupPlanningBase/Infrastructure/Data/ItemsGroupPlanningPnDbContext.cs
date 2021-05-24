@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2007 - 2019 Microting A/S
+Copyright (c) 2007 - 2021 Microting A/S
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -37,17 +37,21 @@ namespace Microting.ItemsGroupPlanningBase.Infrastructure.Data
         {
         }
 
+        // tables
         public DbSet<Item> Items { get; set; }
-        public DbSet<ItemVersion> ItemVersions { get; set;}
         public DbSet<ItemList> ItemLists { get; set; }
-        public DbSet<ItemListVersion> ItemListVersions { get; set; }
         public DbSet<ItemCase> ItemCases { get; set; }
-        public DbSet<ItemCaseVersion> ItemCaseVersions { get; set; }
         public DbSet<ItemCaseSite> ItemCaseSites { get; set; }
-        public DbSet<ItemCaseSiteVersion> ItemCaseSiteVersions { get; set; }
         public DbSet<UploadedData> UploadedDatas { get; set; }
+
+        // versions table
+        public DbSet<ItemVersion> ItemVersions { get; set;}
+        public DbSet<ItemListVersion> ItemListVersions { get; set; }
+        public DbSet<ItemCaseVersion> ItemCaseVersions { get; set; }
+        public DbSet<ItemCaseSiteVersion> ItemCaseSiteVersions { get; set; }
         public DbSet<UploadedDataVersion> UploadedDataVersions { get; set; }
         
+        // common tables
         public DbSet<PluginConfigurationValue> PluginConfigurationValues { get; set; }
         public DbSet<PluginConfigurationValueVersion> PluginConfigurationValueVersions { get; set; }
         public DbSet<PluginPermission> PluginPermissions { get; set; }
@@ -57,6 +61,7 @@ namespace Microting.ItemsGroupPlanningBase.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
         }
     }
 }
