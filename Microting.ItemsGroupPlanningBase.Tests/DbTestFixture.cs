@@ -60,7 +60,7 @@ namespace Microting.ItemsGroupPlanningBase.Tests
             else
             {
                 _connectionString =
-                    @"Server = localhost; port = 3306; Database = items-planning-pn-tests; user = root; Convert Zero Datetime = true;";
+                    @"Server = localhost; port = 3306; Database = items-planning-pn-tests; user = root; password = secretpassword; Convert Zero Datetime = true;";
             }
 
             GetContext(_connectionString);
@@ -103,26 +103,28 @@ namespace Microting.ItemsGroupPlanningBase.Tests
             modelNames.Add("UploadedDatas");
             modelNames.Add("PluginConfigurationValues");
             modelNames.Add("PluginConfigurationValueVersions");
+            bool firstRunNotDone = true;
 
             foreach (var modelName in modelNames)
             {
                 try
                 {
-                    string sqlCmd;
-                    if (DbContext.Database.IsMySql())
+                    if (firstRunNotDone)
                     {
-                        sqlCmd = $"SET FOREIGN_KEY_CHECKS = 0;TRUNCATE `items-planning-pn-tests`.`{modelName}`";
+                        DbContext.Database.ExecuteSqlRaw(
+                            $"SET FOREIGN_KEY_CHECKS = 0;TRUNCATE `items-planning-pn-tests`.`{modelName}`");
                     }
-                    else
-                    {
-                        sqlCmd = $"DELETE FROM [{modelName}]";
-                    }
-
-                    DbContext.Database.ExecuteSqlCommand(sqlCmd);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    if (ex.Message == "Unknown database 'items-planning-pn-tests'")
+                    {
+                        firstRunNotDone = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                 }
             }
         }
