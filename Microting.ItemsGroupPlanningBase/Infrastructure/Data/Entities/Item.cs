@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2007 - 2019 Microting A/S
+Copyright (c) 2007 - 2021 Microting A/S
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,14 +24,9 @@ SOFTWARE.
 
 namespace Microting.ItemsGroupPlanningBase.Infrastructure.Data.Entities
 {
-    using System;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Threading.Tasks;
-    using eForm.Infrastructure.Constants;
-    using eFormApi.BasePn.Infrastructure.Database.Base;
-    using Microsoft.EntityFrameworkCore;
 
-    public class Item : BaseEntity
+    public class Item: PnBase
     {
         public string Sku { get; set; }
         public string Name { get; set; }
@@ -44,112 +39,5 @@ namespace Microting.ItemsGroupPlanningBase.Infrastructure.Data.Entities
 
         [ForeignKey("ItemList")]
         public int ItemListId { get; set; }
-                    
-        public async Task Save(ItemsGroupPlanningPnDbContext dbContext)
-        {
-            Item item = new Item
-            {
-                Sku = Sku,
-                Name = Name,
-                Description = Description,
-                Enabled = Enabled,
-                ItemNumber = ItemNumber,
-                LocationCode = LocationCode,
-                ItemListId = ItemListId,
-                BuildYear = BuildYear,
-                Type = Type,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
-                Version = 1,
-                WorkflowState = Constants.WorkflowStates.Created,
-                UpdatedByUserId = UpdatedByUserId,
-                CreatedByUserId = CreatedByUserId,
-            };
-
-            await dbContext.Items.AddAsync(item);
-            await dbContext.SaveChangesAsync();
-
-            await dbContext.ItemVersions.AddAsync(MapItemVersion(item));
-            await dbContext.SaveChangesAsync();
-
-            Id = item.Id;
-        }
-
-        public async Task Update(ItemsGroupPlanningPnDbContext dbContext)
-        {
-            Item item = await dbContext.Items.FirstOrDefaultAsync(x => x.Id == Id);
-
-            if (item == null)
-            {
-                throw new NullReferenceException($"Could not find item with id: {Id}");
-            }
-
-            item.Sku = Sku;
-            item.Name = Name;
-            item.Description = Description;
-            item.WorkflowState = WorkflowState;
-            item.ItemNumber = ItemNumber;
-            item.LocationCode = LocationCode;
-            item.BuildYear = BuildYear;
-            item.Type = Type;
-            item.UpdatedAt = UpdatedAt;
-            item.UpdatedByUserId = UpdatedByUserId;
-
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                item.UpdatedAt = DateTime.UtcNow;
-                item.Version += 1;
-
-                await dbContext.ItemVersions.AddAsync(MapItemVersion(item));
-                await dbContext.SaveChangesAsync();
-            }
-        }
-
-        public async Task Delete(ItemsGroupPlanningPnDbContext dbContext)
-        {            
-            Item item = await dbContext.Items.FirstOrDefaultAsync(x => x.Id == Id);
-
-            if (item == null)
-            {
-                throw new NullReferenceException($"Could not find item with id: {Id}");
-            }
-
-            item.WorkflowState = Constants.WorkflowStates.Removed;
-            
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                item.UpdatedAt = DateTime.UtcNow;
-                item.Version += 1;
-
-                await dbContext.ItemVersions.AddAsync(MapItemVersion(item));
-                await dbContext.SaveChangesAsync();
-            }
-            
-        }
-
-        private ItemVersion MapItemVersion(Item item)
-        {
-            ItemVersion itemVersion = new ItemVersion
-            {
-                Sku = item.Sku,
-                Name = item.Name,
-                Description = item.Description,
-                Enabled = item.Enabled,
-                ItemListId = item.ItemListId,
-                Version = item.Version,
-                ItemId = item.Id,
-                CreatedAt = item.CreatedAt,
-                UpdatedAt = item.UpdatedAt,
-                LocationCode = item.LocationCode,
-                ItemNumber = item.ItemNumber,
-                BuildYear = item.BuildYear,
-                Type = item.Type,
-                WorkflowState = item.WorkflowState,
-                UpdatedByUserId = item.UpdatedByUserId,
-                CreatedByUserId = item.CreatedByUserId,
-            };
-
-            return itemVersion;
-        }
     }
 }

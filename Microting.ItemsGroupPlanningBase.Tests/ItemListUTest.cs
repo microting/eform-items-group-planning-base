@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2007 - 2019 Microting A/S
+Copyright (c) 2007 - 2021 Microting A/S
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -127,7 +127,7 @@ namespace Microting.ItemsGroupPlanningBase.Tests
             await itemList.Create(DbContext);
 
             // Act
-            itemList = await DbContext.ItemLists.AsNoTracking().FirstOrDefaultAsync();
+            itemList = await DbContext.ItemLists.FirstOrDefaultAsync();
 
             string oldName = itemList.Name;
             itemList.Name = "hello";
@@ -211,7 +211,7 @@ namespace Microting.ItemsGroupPlanningBase.Tests
             await itemList.Create(DbContext);
 
             // Act
-            itemList = await DbContext.ItemLists.AsNoTracking().FirstOrDefaultAsync();
+            itemList = await DbContext.ItemLists.FirstOrDefaultAsync();
 
             Assert.AreEqual(Constants.WorkflowStates.Created, itemList.WorkflowState);
 

@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2007 - 2019 Microting A/S
+Copyright (c) 2007 - 2021 Microting A/S
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -55,7 +55,7 @@ namespace Microting.ItemsGroupPlanningBase.Tests
                 ItemListId = itemList.Id,
             };
             
-            await item.Save(DbContext);
+            await item.Create(DbContext);
             
             ItemCase itemCase = new ItemCase
             {
@@ -113,7 +113,7 @@ namespace Microting.ItemsGroupPlanningBase.Tests
                 ItemListId = itemList.Id
             };
             
-            await item.Save(DbContext);
+            await item.Create(DbContext);
             
             ItemCase itemCase = new ItemCase
             {
@@ -126,7 +126,7 @@ namespace Microting.ItemsGroupPlanningBase.Tests
 
             await itemCase.Create(DbContext);
             // Act
-            itemCase = await DbContext.ItemCases.AsNoTracking().FirstOrDefaultAsync();
+            itemCase = await DbContext.ItemCases.FirstOrDefaultAsync();
 
             itemCase.Status = 77;
             await itemCase.Update(DbContext);
@@ -184,7 +184,7 @@ namespace Microting.ItemsGroupPlanningBase.Tests
                 ItemListId = itemList.Id
             };
             
-            await item.Save(DbContext);
+            await item.Create(DbContext);
             
             ItemCase itemCase = new ItemCase
             {
@@ -197,7 +197,7 @@ namespace Microting.ItemsGroupPlanningBase.Tests
 
             await itemCase.Create(DbContext);
             // Act
-            itemCase = await DbContext.ItemCases.AsNoTracking().FirstOrDefaultAsync();
+            itemCase = await DbContext.ItemCases.FirstOrDefaultAsync();
 
             await itemCase.Delete(DbContext);
 

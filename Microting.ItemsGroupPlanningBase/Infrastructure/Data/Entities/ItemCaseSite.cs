@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2007 - 2019 Microting A/S
+Copyright (c) 2007 - 2021 Microting A/S
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,12 +26,8 @@ namespace Microting.ItemsGroupPlanningBase.Infrastructure.Data.Entities
 {
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Threading.Tasks;
-    using eForm.Infrastructure.Constants;
-    using eFormApi.BasePn.Infrastructure.Database.Base;
-    using Microsoft.EntityFrameworkCore;
 
-    public class ItemCaseSite : BaseEntity
+    public class ItemCaseSite: PnBase
     {
         public int MicrotingSdkSiteId { get; set; }
 
@@ -79,125 +75,5 @@ namespace Microting.ItemsGroupPlanningBase.Infrastructure.Data.Entities
         
         [ForeignKey("ItemCase")]
         public int ItemCaseId { get; set; }
-
-        public async Task Create(ItemsGroupPlanningPnDbContext dbContext)
-        {
-            CreatedAt = DateTime.UtcNow;
-            UpdatedAt = DateTime.UtcNow;
-            Version = 1;
-            WorkflowState = Constants.WorkflowStates.Created;
-
-            await dbContext.ItemCaseSites.AddAsync(this);
-            await dbContext.SaveChangesAsync();
-
-            await dbContext.ItemCaseSiteVersions.AddAsync(MapVersion(this));
-            await dbContext.SaveChangesAsync();
-
-        }
-
-        public async Task Update(ItemsGroupPlanningPnDbContext dbContext)
-        {
-            ItemCaseSite itemCaseSite = await dbContext.ItemCaseSites.FirstOrDefaultAsync(x => x.Id == Id);
-
-            if (itemCaseSite == null)
-            {
-                throw new NullReferenceException($"Could not find item with id: {Id}");
-            }
-
-            itemCaseSite.MicrotingSdkSiteId = MicrotingSdkSiteId;
-            itemCaseSite.MicrotingSdkeFormId = MicrotingSdkeFormId;
-            itemCaseSite.Status = Status;
-            itemCaseSite.FieldStatus = FieldStatus;
-            itemCaseSite.MicrotingSdkCaseId = MicrotingSdkCaseId;
-            itemCaseSite.ItemId = ItemId;
-            itemCaseSite.MicrotingSdkCaseDoneAt = MicrotingSdkCaseDoneAt;
-            itemCaseSite.WorkflowState = WorkflowState;
-            itemCaseSite.NumberOfImages = NumberOfImages;
-            itemCaseSite.Comment = Comment;
-            itemCaseSite.Location = Location;
-            itemCaseSite.SdkFieldValue1 = SdkFieldValue1;
-            itemCaseSite.SdkFieldValue2 = SdkFieldValue2;
-            itemCaseSite.SdkFieldValue3 = SdkFieldValue3;
-            itemCaseSite.SdkFieldValue4 = SdkFieldValue4;
-            itemCaseSite.SdkFieldValue5 = SdkFieldValue5;
-            itemCaseSite.SdkFieldValue6 = SdkFieldValue6;
-            itemCaseSite.SdkFieldValue7 = SdkFieldValue7;
-            itemCaseSite.SdkFieldValue8 = SdkFieldValue8;
-            itemCaseSite.SdkFieldValue9 = SdkFieldValue9;
-            itemCaseSite.SdkFieldValue10 = SdkFieldValue10;
-            itemCaseSite.DoneByUserId = DoneByUserId;
-            itemCaseSite.DoneByUserName = DoneByUserName;
-            itemCaseSite.ItemCaseId = ItemCaseId;
-
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                itemCaseSite.UpdatedAt = DateTime.UtcNow;
-                itemCaseSite.Version += 1;
-
-                await dbContext.ItemCaseSiteVersions.AddAsync(MapVersion(itemCaseSite));
-                await dbContext.SaveChangesAsync();
-            }
-        }
-
-        public async Task Delete(ItemsGroupPlanningPnDbContext dbContext)
-        {
-            ItemCaseSite itemCaseSite = await dbContext.ItemCaseSites.FirstOrDefaultAsync(x => x.Id == Id);
-
-            if (itemCaseSite == null)
-            {
-                throw new NullReferenceException($"Could not find item with id: {Id}");
-            }
-
-            itemCaseSite.WorkflowState = Constants.WorkflowStates.Removed;
-
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                itemCaseSite.UpdatedAt = DateTime.UtcNow;
-                itemCaseSite.Version += 1;
-
-                await dbContext.ItemCaseSiteVersions.AddAsync(MapVersion(itemCaseSite));
-                await dbContext.SaveChangesAsync();
-            }
-        }
-
-        private ItemCaseSiteVersion MapVersion(ItemCaseSite itemCaseSite)
-        {
-            ItemCaseSiteVersion itemCaseVersion = new ItemCaseSiteVersion
-            {
-                MicrotingSdkSiteId = itemCaseSite.MicrotingSdkSiteId,
-                MicrotingSdkeFormId = itemCaseSite.MicrotingSdkeFormId,
-                Status = itemCaseSite.Status,
-                FieldStatus = itemCaseSite.FieldStatus,
-                MicrotingSdkCaseId = itemCaseSite.MicrotingSdkCaseId,
-                ItemId = itemCaseSite.ItemId,
-                MicrotingSdkCaseDoneAt = itemCaseSite.MicrotingSdkCaseDoneAt,
-                NumberOfImages = itemCaseSite.NumberOfImages,
-                Comment = itemCaseSite.Comment,
-                Location = itemCaseSite.Location,
-                ItemCaseId = itemCaseSite.Id,
-                Version = itemCaseSite.Version,
-                CreatedAt = itemCaseSite.CreatedAt,
-                CreatedByUserId = itemCaseSite.CreatedByUserId,
-                UpdatedAt = itemCaseSite.UpdatedAt,
-                UpdatedByUserId = itemCaseSite.UpdatedByUserId,
-                WorkflowState = itemCaseSite.WorkflowState,
-                SdkFieldValue1 = itemCaseSite.SdkFieldValue1,
-                SdkFieldValue2 = itemCaseSite.SdkFieldValue2,
-                SdkFieldValue3 = itemCaseSite.SdkFieldValue3,
-                SdkFieldValue4 = itemCaseSite.SdkFieldValue4,
-                SdkFieldValue5 = itemCaseSite.SdkFieldValue5,
-                SdkFieldValue6 = itemCaseSite.SdkFieldValue6,
-                SdkFieldValue7 = itemCaseSite.SdkFieldValue7,
-                SdkFieldValue8 = itemCaseSite.SdkFieldValue8,
-                SdkFieldValue9 = itemCaseSite.SdkFieldValue9,
-                SdkFieldValue10 = itemCaseSite.SdkFieldValue10,
-                DoneByUserId = itemCaseSite.DoneByUserId,
-                DoneByUserName = itemCaseSite.DoneByUserName,
-                ItemCaseSiteId = itemCaseSite.ItemCaseId
-            };
-
-            return itemCaseVersion;
-        }
-        
     }
 }
