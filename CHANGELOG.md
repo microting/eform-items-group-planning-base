@@ -1,5 +1,118 @@
 # Changelog
 
+## [v3.0.38](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.38) (2021-09-15)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.37...v3.0.38)
+
+**Implemented enhancements:**
+
+- Bump Microsoft.EntityFrameworkCore.Design from 5.0.9 to 5.0.10 [\#202](https://github.com/microting/eform-items-group-planning-base/issues/202)
+- Bump Microting.eFormApi.BasePn from 3.0.47 to 3.0.49 [\#201](https://github.com/microting/eform-items-group-planning-base/issues/201)
+- Bump Microting.eForm from 5.2.37 to 5.2.39 [\#200](https://github.com/microting/eform-items-group-planning-base/issues/200)
+
+**Merged pull requests:**
+
+- Bump Microsoft.NET.Test.Sdk from 16.10.0 to 16.11.0 [\#189](https://github.com/microting/eform-items-group-planning-base/pull/189) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+## [v3.0.37](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.37) (2021-09-14)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.36...v3.0.37)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.46 to 3.0.47 [\#198](https://github.com/microting/eform-items-group-planning-base/issues/198)
+- Bump Microting.eForm from 5.2.36 to 5.2.37 [\#197](https://github.com/microting/eform-items-group-planning-base/issues/197)
+
+## [v3.0.36](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.36) (2021-09-14)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.35...v3.0.36)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.45 to 3.0.46 [\#196](https://github.com/microting/eform-items-group-planning-base/issues/196)
+- Bump Microting.eForm from 5.2.35 to 5.2.36 [\#195](https://github.com/microting/eform-items-group-planning-base/issues/195)
+
+## [v3.0.35](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.35) (2021-09-06)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.34...v3.0.35)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.44 to 3.0.45 [\#194](https://github.com/microting/eform-items-group-planning-base/issues/194)
+- Bump Microting.eForm from 5.2.33 to 5.2.35 [\#193](https://github.com/microting/eform-items-group-planning-base/issues/193)
+
+## [v3.0.34](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.34) (2021-09-03)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.33...v3.0.34)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.43 to 3.0.44 [\#192](https://github.com/microting/eform-items-group-planning-base/issues/192)
+
+## [v3.0.33](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.33) (2021-08-17)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.32...v3.0.33)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.42 to 3.0.43 [\#191](https://github.com/microting/eform-items-group-planning-base/issues/191)
+- Bump Microting.eForm from 5.2.32 to 5.2.33 [\#190](https://github.com/microting/eform-items-group-planning-base/issues/190)
+
+## [v3.0.32](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.32) (2021-08-12)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.31...v3.0.32)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.41 to 3.0.42 [\#188](https://github.com/microting/eform-items-group-planning-base/issues/188)
+- Bump Microting.eForm from 5.2.31 to 5.2.32 [\#187](https://github.com/microting/eform-items-group-planning-base/issues/187)
+
+## [v3.0.31](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.31) (2021-08-11)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.30...v3.0.31)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.40 to 3.0.41 [\#186](https://github.com/microting/eform-items-group-planning-base/issues/186)
+- Bump Microting.eForm from 5.2.30 to 5.2.31 [\#185](https://github.com/microting/eform-items-group-planning-base/issues/185)
+
+## [v3.0.30](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.30) (2021-08-10)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.29...v3.0.30)
+
+**Implemented enhancements:**
+
+- Bump Microsoft.EntityFrameworkCore.Design from 5.0.8 to 5.0.9 [\#184](https://github.com/microting/eform-items-group-planning-base/issues/184)
+- Bump Microting.eFormApi.BasePn from 3.0.38 to 3.0.40 [\#183](https://github.com/microting/eform-items-group-planning-base/issues/183)
+- Bump Microting.eForm from 5.2.27 to 5.2.30 [\#182](https://github.com/microting/eform-items-group-planning-base/issues/182)
+
+## [v3.0.29](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.29) (2021-08-09)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.28...v3.0.29)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.37 to 3.0.38 [\#181](https://github.com/microting/eform-items-group-planning-base/issues/181)
+- Bump Microting.eForm from 5.2.26 to 5.2.27 [\#180](https://github.com/microting/eform-items-group-planning-base/issues/180)
+
+## [v3.0.28](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.28) (2021-08-09)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.27...v3.0.28)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.35 to 3.0.37 [\#179](https://github.com/microting/eform-items-group-planning-base/issues/179)
+- Bump Microting.eForm from 5.2.23 to 5.2.26 [\#178](https://github.com/microting/eform-items-group-planning-base/issues/178)
+
+## [v3.0.27](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.27) (2021-08-05)
+
+[Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.26...v3.0.27)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.34 to 3.0.35 [\#177](https://github.com/microting/eform-items-group-planning-base/issues/177)
+- Bump Microting.eForm from 5.2.22 to 5.2.23 [\#176](https://github.com/microting/eform-items-group-planning-base/issues/176)
+
 ## [v3.0.26](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.26) (2021-08-05)
 
 [Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.25...v3.0.26)
@@ -144,6 +257,7 @@
 **Merged pull requests:**
 
 - Minor changes [\#128](https://github.com/microting/eform-items-group-planning-base/pull/128) ([sanioooook](https://github.com/sanioooook))
+- Upgrade to GitHub-native Dependabot [\#96](https://github.com/microting/eform-items-group-planning-base/pull/96) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump NUnit from 3.12.0 to 3.13.2 [\#95](https://github.com/microting/eform-items-group-planning-base/pull/95) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump Microsoft.NET.Test.Sdk from 16.9.1 to 16.9.4 [\#53](https://github.com/microting/eform-items-group-planning-base/pull/53) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
@@ -188,17 +302,13 @@
 
 [Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.5...v3.0.6)
 
-**Implemented enhancements:**
-
-- Bump Microting.eFormApi.BasePn from 3.0.6 to 3.0.7 [\#113](https://github.com/microting/eform-items-group-planning-base/issues/113)
-- Bump Microting.eForm from 5.1.2 to 5.1.3 [\#112](https://github.com/microting/eform-items-group-planning-base/issues/112)
-
 ## [v3.0.5](https://github.com/microting/eform-items-group-planning-base/tree/v3.0.5) (2021-05-05)
 
 [Full Changelog](https://github.com/microting/eform-items-group-planning-base/compare/v3.0.4...v3.0.5)
 
 **Implemented enhancements:**
 
+- Bump Microting.eFormApi.BasePn from 3.0.6 to 3.0.7 [\#113](https://github.com/microting/eform-items-group-planning-base/issues/113)
 - Bump Microting.eFormApi.BasePn from 3.0.5 to 3.0.6 [\#111](https://github.com/microting/eform-items-group-planning-base/issues/111)
 - Bump Microting.eForm from 5.1.1 to 5.1.2 [\#110](https://github.com/microting/eform-items-group-planning-base/issues/110)
 
@@ -217,6 +327,7 @@
 
 **Implemented enhancements:**
 
+- Bump Microting.eForm from 5.1.2 to 5.1.3 [\#112](https://github.com/microting/eform-items-group-planning-base/issues/112)
 - Bump Microting.eFormApi.BasePn from 3.0.3 to 3.0.4 [\#107](https://github.com/microting/eform-items-group-planning-base/issues/107)
 - Bump Microting.eForm from 5.0.4 to 5.1.0 [\#106](https://github.com/microting/eform-items-group-planning-base/issues/106)
 
@@ -287,7 +398,6 @@
 
 **Implemented enhancements:**
 
-- Bump Microting.eFormApi.BasePn from 2.0.128 to 2.0.129 [\#86](https://github.com/microting/eform-items-group-planning-base/issues/86)
 - Bump Microting.eForm from 4.4.37 to 4.4.38 [\#85](https://github.com/microting/eform-items-group-planning-base/issues/85)
 
 ## [v2.0.97](https://github.com/microting/eform-items-group-planning-base/tree/v2.0.97) (2021-04-19)
@@ -305,7 +415,6 @@
 
 **Implemented enhancements:**
 
-- Bump Microting.eFormApi.BasePn from 2.0.126 to 2.0.127 [\#82](https://github.com/microting/eform-items-group-planning-base/issues/82)
 - Bump Microting.eForm from 4.4.35 to 4.4.36 [\#81](https://github.com/microting/eform-items-group-planning-base/issues/81)
 
 ## [v2.0.95](https://github.com/microting/eform-items-group-planning-base/tree/v2.0.95) (2021-04-15)
@@ -314,6 +423,7 @@
 
 **Implemented enhancements:**
 
+- Bump Microting.eFormApi.BasePn from 2.0.126 to 2.0.127 [\#82](https://github.com/microting/eform-items-group-planning-base/issues/82)
 - Bump Microting.eFormApi.BasePn from 2.0.122 to 2.0.126 [\#80](https://github.com/microting/eform-items-group-planning-base/issues/80)
 - Bump Microting.eForm from 4.4.31 to 4.4.35 [\#79](https://github.com/microting/eform-items-group-planning-base/issues/79)
 
@@ -323,6 +433,7 @@
 
 **Implemented enhancements:**
 
+- Bump Microting.eFormApi.BasePn from 2.0.128 to 2.0.129 [\#86](https://github.com/microting/eform-items-group-planning-base/issues/86)
 - Bump Microting.eFormApi.BasePn from 2.0.120 to 2.0.122 [\#78](https://github.com/microting/eform-items-group-planning-base/issues/78)
 - Bump Microting.eForm from 4.4.29 to 4.4.31 [\#77](https://github.com/microting/eform-items-group-planning-base/issues/77)
 
@@ -414,7 +525,6 @@
 
 - Bump Microting.eFormApi.BasePn from 2.0.107 to 2.0.109 [\#56](https://github.com/microting/eform-items-group-planning-base/issues/56)
 - Bump Microting.eForm from 4.4.13 to 4.4.16 [\#55](https://github.com/microting/eform-items-group-planning-base/issues/55)
-- Bump Microting.eForm from 4.4.1 to 4.4.2 [\#32](https://github.com/microting/eform-items-group-planning-base/issues/32)
 
 ## [v2.0.83](https://github.com/microting/eform-items-group-planning-base/tree/v2.0.83) (2021-03-29)
 
@@ -445,6 +555,7 @@
 **Implemented enhancements:**
 
 - Bump Microting.eFormApi.BasePn from 2.0.97 to 2.0.98 [\#33](https://github.com/microting/eform-items-group-planning-base/issues/33)
+- Bump Microting.eForm from 4.4.1 to 4.4.2 [\#32](https://github.com/microting/eform-items-group-planning-base/issues/32)
 
 ## [v2.0.80](https://github.com/microting/eform-items-group-planning-base/tree/v2.0.80) (2021-02-20)
 
@@ -557,7 +668,6 @@
 
 **Merged pull requests:**
 
-- Upgrade to GitHub-native Dependabot [\#96](https://github.com/microting/eform-items-group-planning-base/pull/96) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump Microsoft.NET.Test.Sdk from 16.6.1 to 16.8.3 [\#14](https://github.com/microting/eform-items-group-planning-base/pull/14) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [v2.0.54](https://github.com/microting/eform-items-group-planning-base/tree/v2.0.54) (2021-01-06)
